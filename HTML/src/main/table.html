@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Table Tag</title>
+    </head>
+    <body>
+        <a href="./home2.html">home2</a>
+        <a href="../image/image.html">image.html</a>
+        <h1>테이블</h1>
+        <style>
+            table {
+                border: 2 solid black;
+                text-align: center;
+                font-weight: 700;
+                font-size: xx-large;
+            }
+            table tbody:nth-last-child() {
+                background-color: purple;
+            }
+        </style>
+        <table>
+            <tr style="height: 100px">
+                <td
+                    style="
+                        width: 100px;
+                        background-color: pink;
+                        text-align: center;
+                    "
+                    colspan="4">
+                    1
+                </td>
+            </tr>
+            <tr style="height: 100px">
+                <td
+                    style="width: 200px; height: 200px; background-color: aqua"
+                    colspan="2"
+                    rowspan="2">
+                    2
+                </td>
+                <td style="width: 100px; background-color: yellow">3</td>
+                <td style="width: 100px; background-color: green">4</td>
+            </tr>
+            <tr style="height: 100px">
+                <td style="width: 100px; background-color: purple">5</td>
+                <td style="width: 100px; background-color: yellowgreen">6</td>
+            </tr>
+            <tr style="height: 100px">
+                <td style="width: 100px; background-color: skyblue" colspan="2">
+                    7
+                </td>
+                <td
+                    style="width: 100px; background-color: mediumspringgreen"
+                    colspan="2">
+                    8
+                </td>
+            </tr>
+        </table>
+        <hr />
+        <table border="1">
+            <caption>
+                <strong>Browser</strong>
+            </caption>
+            <thead>
+                <tr>
+                    <th>브라우저</th>
+                    <th>제조업체</th>
+                    <th>다운로드</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>크롬</td>
+                    <td>google</td>
+                    <td>https://www.</td>
+                </tr>
+                <tr>
+                    <td>파이어폭스</td>
+                    <td>mozilla</td>
+                    <td>https://www.</td>
+                </tr>
+                <tr>
+                    <td>사파리</td>
+                    <td>apple</td>
+                    <td>https://www.</td>
+                </tr>
+            </tbody>
+        </table>
+        <hr />
+        <table>
+            <thead>
+                <tr>
+                    <th>number</th>
+                    <th>number</th>
+                    <th>number</th>
+                    <th>number</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                </tr>
+            </tfoot>
+        </table>
+    </body>
+</html>
