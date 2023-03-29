@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login | SCIT</title>
+    </head>
+    <body>
+        <form method="post" action="../main/home2.html" id="login-form">
+            <fieldset style="width: 300px">
+                <legend>필수정보</legend>
+                <table>
+                    <tr>
+                        <td style="width: 150px">ID</td>
+                        <td style="width: 150px">
+                            <input
+                                type="text"
+                                name="id"
+                                placeholder="id"
+                                required />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px">패스워드</td>
+                        <td style="width: 150px">
+                            <input
+                                type="password"
+                                name="password"
+                                id="password"
+                                placeholder="password" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px">패스워드 확인</td>
+                        <td style="width: 150px">
+                            <input
+                                type="password"
+                                name="confirm-password"
+                                id="password2"
+                                placeholder="Confirm Password" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px">email</td>
+                        <td style="width: 150px">
+                            <input
+                                type="email"
+                                name="email"
+                                id="email"
+                                placeholder="abcd@gmail.com" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px">핸드폰번호</td>
+                        <td style="width: 150px">
+                            <input
+                                type="number"
+                                name="phone"
+                                id="degit"
+                                placeholder="01012345678" />
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset style="width: 300px">
+                <legend>선택정보</legend>
+                <div style="display: flex; justify-content: space-between">
+                    <span>생년월일</span>
+                    <input type="date" name="birth" id="birth" />
+                </div>
+                <div style="display: flex; justify-content: space-between">
+                    <span>MBTI</span>
+                    <select name="MBTI" id="mbti">
+                        <option value="ENTP">ENTP</option>
+                        <option value="ENTP">ENTJ</option>
+                        <option value="ENTP">ENFP</option>
+                        <option value="ENTP">ENFJ</option>
+
+                        <option value="ENTP">ESTP</option>
+                        <option value="ENTP">ESTJ</option>
+                        <option value="ENTP">ESFP</option>
+                        <option value="ENTP">ESFJ</option>
+
+                        <option value="ENTP">INTP</option>
+                        <option value="ENTP">INTJ</option>
+                        <option value="ENTP">INFP</option>
+                        <option value="ENTP">INFJ</option>
+
+                        <option value="ENTP">ISTP</option>
+                        <option value="ENTP">ISTJ</option>
+                        <option value="ENTP">ISFP</option>
+                        <option value="ENTP">ISFJ</option>
+                    </select>
+                </div>
+                <div style="display: flex; justify-content: space-between">
+                    <span>관심분야</span>
+                    <label for="japanese">
+                        <input
+                            type="checkbox"
+                            name="japanese"
+                            id="japanese"
+                            value="일본어" />일본어
+                    </label>
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="computer"
+                            id="computer"
+                            value="IT" />IT
+                    </label>
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="nothing"
+                            id="nothing"
+                            value="nothing" />관심없음
+                    </label>
+                </div>
+                <div style="display: flex; justify-content: space-between">
+                    <span>파일</span>
+                    <input type="file" name="new_file" id="new_file" />
+                </div>
+            </fieldset>
+            <div style="display: flex; padding-right: 10px">
+                <input type="submit" value="가입" />
+                <input type="reset" value="취소" />
+            </div>
+        </form>
+        <style>
+            fieldset {
+                margin-bottom: 10px;
+            }
+        </style>
+    </body>
+</html>
