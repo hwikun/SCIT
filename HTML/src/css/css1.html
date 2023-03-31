@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CSS</title>
+        <style>
+            /* 연결선택자 */
+            div > h1 {
+                color: red;
+            }
+            /* 속성 선택자 */
+            input[type="text"] {
+                background-color: red;
+            }
+            /* 가상 선택자 */
+            h1:first-child {
+                color: blue;
+            }
+            header {
+                width: 100%;
+                height: 15vh;
+                background-color: red;
+            }
+            main {
+                width: 100%;
+                height: 70vh;
+                background-color: yellowgreen;
+            }
+            footer {
+                width: 100%;
+                height: 15vh;
+                background-color: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <a href="../main/home2.html">Home</a>
+        <!-- 블록 레벨 태그 -->
+        <!-- p, h1~6, ul, ol, div, form, hr, tabel, fieldset ... -->
+
+        <!-- 영역(inline) 레벨 태그 -->
+        <!-- img, br, span, input, textarea, label, button ... -->
+
+        <!-- 스타일 적용 방법 -->
+        <!-- 1. 인라인 방식(직접 태그안에 style att를 작성 -->
+        <!-- 2. head 태그에 style태그로 선택자로 접근, 변경 -->
+        <!-- 3. 외부파일에서 선택자로 접근, 변경 -->
+
+        <!-- Cascading Style Sheet -->
+        <!-- 선택자 -->
+        <!-- 1. 태그 2. 아이디 3. 클래스 4. 연결선택자(관계를 통해서 접근) 5. 속성선택자(속성을 가지고 있는 요소를 접근) 6. 가상선택자 -->
+
+        <!-- 시멘틱 태그 header, main, footer -->
+        <header>
+            <h1>CSS TEST</h1>
+        </header>
+        <main></main>
+        <footer></footer>
+    </body>
+</html>

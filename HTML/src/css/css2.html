@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CSS2</title>
+        <style>
+            img {
+                width: 300px;
+            }
+            #block {
+                display: block;
+                /* block, inline, inline-block, none, ... */
+            }
+            #block img {
+                display: block;
+            }
+            #inline-block {
+                display: inline-block;
+            }
+            .box {
+                width: 200px;
+                height: 100px;
+                display: inline-block;
+                margin: 15px;
+                border-color: yellowgreen;
+                border-width: 5px;
+            }
+            #a1 {
+                border-style: solid; /*실선 */
+            }
+            #a2 {
+                border-style: dotted; /* 점선 */
+            }
+            #a3 {
+                border-style: dashed; /* 선으로된 점선 */
+            }
+        </style>
+    </head>
+    <body>
+        <a href="../main/home2.html">home</a>
+        <hr />
+        <div id="inline">
+            <img src="../images/07efaff6c8cbd534ce1fc832fb60f250.jpg" alt="" />
+            <img src="../images/4aee29e9d4dbf683d759eeae7e008fe1.jpg" alt="" />
+            <img src="../images/697b76b612cf923ba38c0aa0fd874081.jpg" alt="" />
+        </div>
+        <hr />
+        <div id="block">
+            <img src="../images/07efaff6c8cbd534ce1fc832fb60f250.jpg" alt="" />
+            <img src="../images/4aee29e9d4dbf683d759eeae7e008fe1.jpg" alt="" />
+            <img src="../images/697b76b612cf923ba38c0aa0fd874081.jpg" alt="" />
+        </div>
+        <hr />
+        <div id="inline-block">
+            <img src="../images/07efaff6c8cbd534ce1fc832fb60f250.jpg" alt="" />
+            <img src="../images/4aee29e9d4dbf683d759eeae7e008fe1.jpg" alt="" />
+            <img src="../images/697b76b612cf923ba38c0aa0fd874081.jpg" alt="" />
+        </div>
+        <hr />
+
+        <!-- 테두리 -->
+        <div class="box" id="a1"></div>
+        <div class="box" id="a2"></div>
+        <div class="box" id="a3"></div>
+        <hr />
+    </body>
+</html>

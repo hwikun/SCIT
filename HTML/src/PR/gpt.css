@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Profile info section takes 1/3 of screen, posts grid takes 2/3 of screen */
+    grid-gap: 20px; /* Add some space between the sections */
+    padding: 20px;
+}
+
+.profile-info {
+    grid-column: 1 / 2; /* Profile info section takes up the first column */
+}
+
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Show 3 posts per row */
+    grid-template-rows: repeat(
+        auto-fit,
+        minmax(200px, auto)
+    ); /* Auto-fit rows to the content, with a minimum height of 200px */
+    grid-gap: 20px; /* Add some space between the posts */
+    grid-column: 2 / 3; /* Posts grid takes up the second column */
+}
+
+/* Add some styling to the posts */
+.posts-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}

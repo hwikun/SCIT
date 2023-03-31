@@ -1,0 +1,67 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
+    text-align: center;
+}
+.container {
+    background-position: center;
+    position: relative;
+    background-image: linear-gradient(
+            rgba(255, 255, 255, 0.5),
+            rgba(255, 255, 255, 0.5)
+        ),
+        url("../images/07efaff6c8cbd534ce1fc832fb60f250.jpg");
+    background-repeat: no-repeat;
+    width: 40%;
+    height: 100%;
+    padding: 0% 10% 2%;
+}
+
+fieldset {
+    margin-bottom: 5%;
+    border-radius: 15px;
+    padding: 5%;
+}
+legend {
+    font-size: 150%;
+}
+
+.infoItem {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3%;
+    color: #636e72;
+}
+
+.infoItem input {
+    border-radius: 25px;
+    border: none;
+    color: #fff;
+    min-height: 30px;
+    box-shadow: 2px 2px 2px 2px gray;
+}
+
+.infoItem2 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1%;
+}
+
+.submitBox {
+    display: flex;
+    justify-content: space-around;
+}
+
+.submitBox input {
+    border: none;
+    width: 40%;
+    min-height: 30px;
+    border-radius: 25px;
+    background-color: pink;
+}
+.submitBox input:last-child {
+    background-color: red;
+}

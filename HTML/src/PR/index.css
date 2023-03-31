@@ -1,0 +1,162 @@
+body {
+    background-color: #1e272e;
+    color: #d2dae2;
+}
+.insta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    padding-top: 50px;
+}
+
+.profile {
+    display: flex;
+    width: 60%;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.profileImg {
+    background-image: url("../images/IMG_3222.png");
+    min-width: 200px;
+    min-height: 200px;
+    border-radius: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-right: 5%;
+}
+
+.profileInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.profileInfo {
+    display: flex;
+    width: 100%;
+}
+
+.nameRow,
+.buttons,
+.infoRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 2%;
+}
+
+.buttons {
+    width: 50%;
+}
+
+h2 {
+    margin: 0;
+}
+
+a:link,
+a:visited {
+    color: #d2dae2;
+    font-weight: 700;
+}
+
+.gallery {
+    width: 60%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
+    grid-template-rows: repeat(6, minmax(100px, 1fr));
+    align-content: space-evenly;
+}
+.item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #d2dae2;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-weight: 700;
+}
+.item::after {
+    display: block;
+    content: "";
+    padding-bottom: 100%;
+}
+
+.follow,
+.dm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    width: 100%;
+    padding: 5px;
+    margin-right: 5%;
+}
+
+.follow {
+    background-color: #0fbcf9;
+}
+
+.dm {
+    background-color: #05c46b;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-around;
+    width: 60%;
+    align-items: center;
+    border-top: 2px solid #d2dae2;
+    border-bottom: 2px solid #d2dae2;
+    margin-bottom: 2%;
+    padding: 1% 0px;
+}
+
+#jsts {
+    background-image: url("../images/ts.png");
+}
+#py {
+    background-image: url("../images/python.png");
+    background-color: #d2dae2;
+}
+#swift {
+    background-image: url("../images/swift-og.png");
+}
+#node {
+    background-image: url("../images/Node.js.png");
+    background-color: #d2dae2;
+}
+#nest {
+    background-image: url("../images/nestjs.png");
+    color: #1e272e;
+}
+#flask {
+    background-image: url("../images/flask.png");
+    background-color: #d2dae2;
+}
+#react {
+    background-image: url("../images/react.png");
+    background-color: #d2dae2;
+}
+#next {
+    background-image: url("../images/nextjs.png");
+}
+#style-components {
+    background-image: url("../images/style-components.png");
+}
+#db {
+    background-image: url("../images/db.png");
+    color: #1e272e;
+}
+#aws {
+    background-image: url("../images/aws.png");
+}
+#swiftui {
+    background-image: url("../images/swiftui.png");
+    background-color: #d2dae2;
+}
