@@ -119,13 +119,16 @@ a:visited {
 
 #jsts {
     background-image: url("../images/ts.png");
+    color: #1e272e;
 }
 #py {
     background-image: url("../images/python.png");
     background-color: #d2dae2;
+    color: #1e272e;
 }
 #swift {
     background-image: url("../images/swift-og.png");
+    color: #1e272e;
 }
 #node {
     background-image: url("../images/Node.js.png");
@@ -141,7 +144,6 @@ a:visited {
 }
 #react {
     background-image: url("../images/react.png");
-    background-color: #d2dae2;
 }
 #next {
     background-image: url("../images/nextjs.png");
@@ -158,5 +160,4 @@ a:visited {
 }
 #swiftui {
     background-image: url("../images/swiftui.png");
-    background-color: #d2dae2;
 }
