@@ -68,4 +68,8 @@ public class Account {
 		}
 		return result;
 	}
+	
+	public void printAccInfo() {
+		System.out.printf("계좌번호: %s, 예금주: %s, 잔고: %d\n", accNo, customer, balance);
+	}
 }
