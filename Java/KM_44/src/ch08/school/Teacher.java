@@ -1,7 +1,7 @@
 package ch08.school;
 
 public class Teacher extends Person{
-	private int salaly;
+	private int salary;
 	
 	public Teacher() {
 		super();
@@ -9,21 +9,21 @@ public class Teacher extends Person{
 
 	public Teacher(String name, String id, String phone, int salaly) {
 		super(name, id, phone);
-		this.salaly = salaly;
+		this.salary = salaly;
 	}
 
 	public int getSalaly() {
-		return salaly;
+		return salary;
 	}
 
 	public void setSalaly(int salaly) {
-		this.salaly = salaly;
+		this.salary = salaly;
 	}
 
 	
 	public String toString(int a) {
 		// TODO Auto-generated method stub
-		return super.toString() + "급여: " + salaly + a;
+		return super.toString() + "급여: " + salary + a;
 		
 	}
 	
