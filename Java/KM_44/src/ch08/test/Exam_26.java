@@ -11,12 +11,21 @@ public class Exam_26 {
 		
 		System.out.printf("문자열 입력: ");
 		String s = sc.nextLine();
-		System.out.println(s.toString());
-		char[] arr = s.toCharArray();
-		for(int i=0; i<arr.length; i++) {
-			System.out.printf("%c", arr[arr.length -1 -i]);
-		}
 		
+		System.out.println(s);
+		for(int i=s.length(); i>0; i--) {
+			System.out.print(s.charAt(i-1));
+		}
+		System.out.println();
+		StringBuffer sb = new StringBuffer(s);
+		System.out.print(sb.reverse());
+		
+		String a = new String();
+		StringBuffer b = new StringBuffer();
+		a += "a";
+		a = a.concat("b"); // 새 String 객체 생성후 재할당;
+		
+		b = b.append("fasdfdf"); // 원래 String 객체에 직접 추가;
 	}
 
 }
