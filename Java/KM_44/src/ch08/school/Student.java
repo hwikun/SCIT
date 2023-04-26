@@ -66,7 +66,4 @@ public class Student extends Person{
 		+ engScore + "\n합계: " + getTotal() + "\n평균: " + getAvg() + "\n등급: " + getGrades();
 		return a + b;
 	}
-	
-	
-	
 }
