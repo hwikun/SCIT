@@ -1,0 +1,14 @@
+설명 달아놓기
+
+프로젝트 설명하는 문서 작성
+
+school - 학생 성적 처리 프로그램
+학생성적을 입력받아 저장하고 검색/삭제
+
+ArrayList 실
+
+school.ui.SchoolMain = 프로그램 시작
+school.ui.SchoolUI = User Interface
+school.service.SchoolService - 기능단위의 메소드 정의
+school.dao.SchoolDAO - 데이터처리
+school.vo.Student/Teacher/Person - VO 클래스
