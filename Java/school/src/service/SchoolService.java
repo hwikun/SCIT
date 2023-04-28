@@ -24,12 +24,18 @@ public class SchoolService {
 		boolean result = dao.deleteItem(id);
 		return result;
 	}
-	
+
 	//검색
 	// 검색할 이름: "ㄹㄹㄹ" // 이름의 일부만 입력해도 검색되게;
 	// 학번, 성적으로 상세조건 선택하여 검색하게;
 	
 	// return ArrayList;
+	
+	public ArrayList<Student> searchStudent(String name) {
+		// TODO Auto-generated method stub
+		ArrayList<Student> studentList = dao.search(name);
+		return studentList;
+	}
 	
 	
 

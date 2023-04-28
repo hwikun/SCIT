@@ -33,4 +33,13 @@ public class SchoolDAO {
 	// 각 학생의 이름과 전달받은 문자열을 비교
 	// 이름의 일부분이 매개변수와 일치하면 그 Student 객체를 ArrayList 에add;
 	// ArrayList 를 return;
+	public ArrayList<Student> search(String name){
+		ArrayList<Student> result = new ArrayList<>();
+		for(Student st: list) {
+			if(st.getName().contains(name)) {
+				result.add(st);
+			}
+		}
+		return result;
+	}
 }

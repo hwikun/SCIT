@@ -64,11 +64,45 @@ public class SchoolUI {
 		// TODO 데이터 조회
 		System.out.println("2. 전체 목록 출력");
 		ArrayList<Student> studentList = service.getStudentList();
-		System.out.println(studentList);
+		for(Student st : studentList) {
+			System.out.println(st);
+		}
 	}
 	
 	void searchData() {
 		// TODO 데이터 검색
+		System.out.println();
+		System.out.println("[ 검색 방식 선택 ]");
+		System.out.print("1. 이름");
+		System.out.print("2. 학번");
+		System.out.print("3. 성적");
+		String choice = keyin.next();
+		switch(choice) {
+			case "1":
+				System.out.printf("이름 입력: ");
+				String name = keyin.next();
+				ArrayList<Student> studentList = service.searchStudent(name);
+				if(studentList.isEmpty()) {
+					System.out.println("검색 결과가 없습니다.");
+				} else {
+					System.out.println("이름\t학번\t총점\t평균");
+					for(Student s: studentList) {
+						System.out.printf("%s\t%s\t%d\t%.2f\n", s.getName(), s.getId(), s.getTotal(), s.getAvg());;
+					}
+					
+				}
+				break;
+			case "2":
+				
+				break;
+			case "3":
+				
+				break;
+			default: 
+				System.out.println("잘못입력하셨습니다. 다시 입력해주세요");
+				searchData();
+		}
+		
 	}
 	
 	void deleteData() {
