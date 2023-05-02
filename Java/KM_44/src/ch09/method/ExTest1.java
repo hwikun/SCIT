@@ -16,6 +16,7 @@ public class ExTest1 {
 		catch(NumberFormatException e) { // 상속관계상 하위 Exception부터 처리;
 			// 해결 방법 작성
 			System.out.println("숫자가 아닙니다");
+			return; // finally 실행하고 종료
 		}
 		catch(ArithmeticException e) {
 			System.out.println("0으로 나눌 수 없습니다.");

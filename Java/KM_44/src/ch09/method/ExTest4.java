@@ -9,17 +9,20 @@ public class ExTest4 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
+		int sum = 0;
 		ArrayList<Integer> list = new ArrayList<>();
 		try {
 			while(true) {
-				System.out.printf("정수 입력: ");
-				list.add(sc.nextInt());
+			System.out.printf("정수 입력: ");
+			list.add(sc.nextInt());
 			}
-		} catch(InputMismatchException e) {
-			
-		}
-			
+		} catch(Exception e) {}
 		
+		for(int i=0; i<list.size(); i++) {
+			System.out.printf("%d%s", list.get(i), i < list.size()-1 ? " + " : " = ");
+			sum += list.get(i);
+		}
+		System.out.println(sum);
 	}
 
 }
