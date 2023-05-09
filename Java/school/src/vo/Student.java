@@ -1,6 +1,7 @@
 package vo;
 
-public class Student extends Person{
+public class Student extends Person {
+	private static final long serialVersionUID = 3929783946063331128L;
 	private int lanScore, matScore, engScore;
 	
 	public Student() {

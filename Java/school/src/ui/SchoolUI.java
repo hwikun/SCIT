@@ -116,6 +116,7 @@ public class SchoolUI {
 	
 	void exit() {
 		// TODO 프로그램 종료
+		service.save();
 		System.out.println("프로그램을 종료합니다");
 	}
 }

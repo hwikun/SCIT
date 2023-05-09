@@ -1,11 +1,47 @@
 package dao;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import vo.Student;
 
 public class SchoolDAO {
-	ArrayList<Student> list = new ArrayList<>();
+	
+	ArrayList<Student> list;
+	public static final String FILE_NAME = "school.sch";
+	
+	public SchoolDAO() {
+		// school.sch 파일을 열기(객체 단위로 읽을수있게)
+		// 파일이 없으면 ArrayList 생성
+		// 있으면 저장된 ArrayList 객체를 읽어 list에 대입
+		try {			
+			ObjectInputStream in = new ObjectInputStream(new FileInputStream(FILE_NAME));
+			list = (ArrayList<Student>) in.readObject(); // 역직렬화;
+			in.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+			list = new ArrayList<Student>();
+		}
+	}
+	
+	public void save() {
+		// school.sch 파일 생성(객체를 저장할 수 있게)
+		// 파일에 list 저장
+		try {
+			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILE_NAME));
+			out.writeObject(list); // 직렬화 필수;
+			out.close();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public void insert(Student student) {
 		// TODO 저장소에 저장;

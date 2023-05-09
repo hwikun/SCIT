@@ -36,6 +36,11 @@ public class SchoolService {
 		ArrayList<Student> studentList = dao.search(name);
 		return studentList;
 	}
+
+	public void save() {
+		// TODO Auto-generated method stub
+		dao.save();
+	}
 	
 	
 

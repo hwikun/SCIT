@@ -1,6 +1,9 @@
 package vo;
 
-public abstract class Person { // 추상클래스
+import java.io.Serializable;
+
+public abstract class Person implements Serializable { // 추상클래스
+	private static final long serialVersionUID = 7633183897933606138L;
 	private String name, id, phone;
 	
 	public Person() {
