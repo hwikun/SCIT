@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- 학생 정보 처리 SQL -->
+<mapper namespace="school.dao.StudentMapper">
+
+<!-- 학생 정보 저장 -->
+<insert id="insert" parameterType="student">
+insert into student values(#{id}, #{name}, #{phone}, #{kor}, #{eng}, #{mat})
+</insert>
+
+<select id="findStudents" resultType="student">
+select * from student
+</select>
+
+<delete id="deleteStudent" parameterType="string" >
+delete from student where num = #{n}
+</delete>
+
+<update id="updateStudent" parameterType="student">
+update student set name = #{name}, phone = #{phone}, kor = #{kor}, eng = #{eng}, mat = #{mat} where id = #{id}
+</update>
+
+<select id="findByName" parameterType="string" resultType="student">
+select * from student where name like '%' || #{name} || '%'
+</select>
+
+<select id="findOne" parameterType="string" resultType="student">
+select * from student where id = #{id}
+</select>
+
+</mapper>
+
+

@@ -1,0 +1,30 @@
+설명 달아놓기
+
+프로젝트 설명하는 문서 작성
+
+school - 학생 성적 처리 프로그램
+학생성적을 입력받아 저장하고 검색/삭제
+
+ArrayList 실
+
+school.ui.SchoolMain = 프로그램 시작
+school.ui.SchoolUI = User Interface
+school.service.SchoolService - 기능단위의 메소드 정의
+school.dao.SchoolDAO - 데이터처리
+school.vo.Student/Teacher/Person - VO 클래스
+
+-- 학생 정보 테이블
+create table student (
+	id varchar2(20) primary key, -- 학번
+	name varchar2(20) not null, --이름
+	phone varchar2(30), -- 전화번호
+	kor number(3) default 0, -- 국어점수
+	eng number(3) default 0, -- 영어점수
+	mat number(3) default 0, -- 수학점수
+);
+
+-- 저장 예시
+insert into student values('100', '홍길동', '010-1111-1111', 100, 90, 80);
+
+
+	
