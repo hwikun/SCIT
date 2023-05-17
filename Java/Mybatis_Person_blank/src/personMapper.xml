@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 회원정보 처리 SQL -->
+<mapper namespace="test.dao.PersonMapper">
+
+<!-- 회원 정보 저장 -->
+<insert id="insertPerson" parameterType="person">
+insert into person (
+	num
+	, name
+	, age
+)
+values (
+	person_seq.nextval
+	, #{name}  <!-- Person 객체의 getter함수 -->
+	, #{age}
+)
+</insert>
+
+<delete id="deletePerson" parameterType="int">
+delete from person where num = #{n} <!-- 아무이름이나 상관없음.vo객체에서의 getter와는 다름 -->
+</delete>
+<update id="updatePerson" parameterType="person">
+update person set name = #{name}, age = #{age} where num = #{num}
+</update>
+
+<!-- resultType 반환타입 -->
+<!-- 가져올 컬럼명 == 멤버변수명 -->
+<!-- 결과가 없으면 반환값 null -->
+<select id="selectOnePerson" parameterType="int" resultType="person">
+select * from person where num = #{num}
+</select>
+
+<!-- 다건조회 -->
+<!-- 한 행 단위로 resultType 지정 -->
+<select id="selectAll" resultType="person">
+select * from person
+</select>
+
+<select id="findByName" parameterType="string" resultType="person">
+select * from person where name like '%' || #{name} || '%'
+</select>
+
+</mapper>
