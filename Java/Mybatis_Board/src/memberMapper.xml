@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- 회원 정보 처리 SQL -->
+<mapper namespace="board.dao.MemberMapper">
+
+<!-- 회원 정보 저장 -->
+<insert id="insertMember" parameterType="member">
+insert into member1 values(#{id}, #{password}, #{name})
+</insert>
+
+<select id="selectMember" parameterType="string" resultType="member">
+select * from member1 where id = #{id}
+</select>
+</mapper>
+
+

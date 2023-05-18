@@ -1,0 +1,16 @@
+[게시판 예제]
+mybatis를 이용하여 Oracle에 데이터 처리를 하는 java 프로그램
+
+패키지: board.ui / board.dao / board.service / board.vo
+BoardMain - 프로그램 시작
+BoardUI - 사용자 인터페이스
+BoardService - 기능 구현
+BoardDAO - 데이터 처리
+BoardMapper - xml의 sql 구문과 매핑되는 인터페이스
+MybatisConfig - mybatis의 객체 생성 (하나만 생성)
+Member - 회원정보 VO
+Board - 게시글 정보 VO
+
+db.properties - DB 연결 정보(경로, 계정, 비번, jdbc 드라이버명)
+mybatis-config.xml - Mybatis에서 사용하기 위한 환경설정
+boardMapper.xml - 게시판 관련 SQL정의 
