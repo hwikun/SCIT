@@ -3,15 +3,17 @@ package board.vo;
 public class Board {
 	private int num;
 	private String id, title, contents, inputdate;
+	private String name; // join data;
 	
 	public Board() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Board(int num, String id, String title, String contents, String inputdate) {
+	public Board(int num, String id, String name, String title, String contents, String inputdate) {
 		super();
 		this.num = num;
 		this.id = id;
+		this.name = name;
 		this.title = title;
 		this.contents = contents;
 		this.inputdate = inputdate;
@@ -31,6 +33,14 @@ public class Board {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getTitle() {
@@ -60,7 +70,9 @@ public class Board {
 	@Override
 	public String toString() {
 		return "Board [num=" + num + ", id=" + id + ", title=" + title + ", contents=" + contents + ", inputdate="
-				+ inputdate + "]";
+				+ inputdate + ", name=" + name + "]";
 	}
+
+	
 	
 }

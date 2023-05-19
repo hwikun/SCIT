@@ -7,7 +7,75 @@
 <mapper namespace="board.dao.BoardMapper">
 
 <!-- 게시글 정보 저장 -->
+<insert id="insertPost" parameterType="board">
+insert into posts (num, id, title, contents) 
+values(posts_seq.nextval, #{id}, #{title}, #{contents})
+</insert>
 
+<select id="selectAll" resultType="board">
+<!-- 글번호 작성자이름 글제목 작성일(23/05/19) -->
+select
+	num,
+	name,
+	title,
+	to_char(inputdate, 'yy/mm/dd') inputdate
+from 
+	posts p, member1 m
+where
+	p.id = m.id
+order by
+	num desc
+</select>
+
+<select id="selectOne" parameterType="int" resultType="board">
+select
+	num,
+	p.id,
+	title,
+	contents,
+	name,
+	to_char(inputdate, 'yy/mm/dd') inputdate
+from
+	posts p, member1 m
+where
+	p.id = m.id
+	and num = #{num}
+order by
+	num desc
+	
+</select>
+
+<select id="selectByWord" parameterType="string" resultType="board">
+<!-- 대소문자 무시 -->
+select
+	num,
+	title,
+	name,
+	to_char(inputdate, 'yy/mm/dd') inputdate
+from
+	posts p, member1 m
+where
+	p.id = m.id
+	and (
+		lower(title) like '%'|| #{word} || '%' 
+		or lower(contents) like '%'|| #{word} || '%'
+    )
+order by
+	num desc
+</select>
+
+<delete id="deleteOne" parameterType="int">
+delete from posts where num = #{num}
+</delete>
+
+<update id="updateOne" parameterType="board">
+update 
+	posts 
+set 
+	title = #{title}, contents = #{contents} 
+where
+	num = #{num}
+</update>
 
 </mapper>
 

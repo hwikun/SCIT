@@ -21,3 +21,5 @@ create sequence posts_seq;
 insert into member1 values('aaa', '111', '홍길동');
 insert into member1 values('bbb', '222', '김철수');
 insert into member1 values('ccc', '333', '이영희');
+
+insert into posts (num, id, title, contents) values(posts_seq.nextval, 'aaa', 'title', 'contents');
