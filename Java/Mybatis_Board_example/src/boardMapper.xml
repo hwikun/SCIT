@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 학생 정보 처리 SQL -->
+<mapper namespace="board.dao.BoardMapper">
+
+<!-- 회원 정보 저장 -->
+<insert id="insertMember" parameterType="member">
+insert into member values (#{id}, #{password}, #{name})
+</insert>
+
+<!-- 회원 정보 조회 -->
+<select id="getMember" parameterType="string" resultType="member">
+select * from member where id = #{id}
+</select>
+
+<!-- 글 저장 -->
+<insert id="insertBoard" parameterType="board">
+insert into board (num, id, title, contents) 
+values (board_seq.nextval, #{id},#{title},#{contents})
+</insert>
+
+<!-- 글 목록 -->
+<select id="selectBoard" resultType="board">
+select
+	num
+	, name
+	, title
+	, to_char(inputdate, 'yy/mm/dd') inputdate
+from 
+	member, board
+where
+	member.id = board.id
+order by
+	num desc
+</select>
+
+<!-- 글읽기 -->
+<select id="getBoard" parameterType="int" resultType="board">
+select * from board where num = #{num}
+</select>
+
+<!-- 검색 -->
+<select id="search" parameterType="string" resultType="board">
+select
+	num
+	, name
+	, title
+	, to_char(inputdate, 'yy/mm/dd') inputdate
+from 
+	member, board
+where
+	member.id = board.id
+	and (upper(title) like '%' || upper(#{keyword} or  upper(contents) like '%' || upper(#{keyword}) 
+order by
+	num desc
+</select>
+
+<!-- 글삭제 -->
+<delete id="deleteBoard" parameterType="board">
+delete from board where num = #{num} and id=#{id}
+</delete>
+
+<!-- 글수정 -->
+<update id="updateBoard" parameterType="board">
+update board set
+	title = #{title}
+	,contents = #{contents}
+where
+	num = #{num}
+	and id = #{id}
+</update>
+
+</mapper>
+
+
+
+
+
+
+

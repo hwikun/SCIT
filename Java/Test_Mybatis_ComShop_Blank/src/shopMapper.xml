@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="shop.dao.ShopMapper">
+
+<insert id="insertProduct" parameterType="product">
+	insert into com_product(code, pname, price) values (#{code}, #{pname}, #{price})
+</insert>
+
+<select id="selectProducts" resultType="product">
+select * from com_product
+</select>
+
+<insert id="insertSales" parameterType="sales">
+insert into com_sales(num, code, quantity) values(com_sales_seq.nextval, #{code}, #{quantity})
+</insert>
+
+<select id="selectSales" resultType="sales">
+select * from com_sales
+</select>
+
+<select id="selectOneSales" parameterType="int" resultType="sales">
+select * from com_sales where num = #{num}
+</select>
+
+<delete id="deleteSales" parameterType="int">
+delete from com_sales where num = #{num}
+</delete>
+
+<select id="selectAmmount" resultType="ammount">
+select
+    distinct s.code, 
+    pname name, 
+    sum(quantity) ammount, 
+    sum(quantity * price) price
+from
+	com_product p, com_sales s 
+where
+	p.code = s.code
+group by
+    s.code, pname
+order by
+    price desc
+</select>
+</mapper>

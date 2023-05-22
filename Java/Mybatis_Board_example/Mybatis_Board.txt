@@ -1,0 +1,17 @@
+[게시판 예제]
+
+* 패키지와 클래스, 인터페이스
+board.ui.BoardMain - 프로그램의 시작
+board.ui.BoardUI - 사용자 인터페이스
+board.service.BoardService - 기능 구현
+board.dao.BoardDAO - 데이터 처리
+board.dao.BoardMapper - xml의 sql구문과 매핑되는 인터페이스
+board.dao.MybatisConfig - mybatis의 SqlSessionFactory 객체 생성
+board.vo.Member - 회원정보 VO
+board.vo.Board - 게시글 정보 VO
+
+* 설정파일
+src/db.properties - DB에 관한 정보 (DB경로, 계정, 비번, JDBC드라이버명)
+src/mybatis-config.xml - Mybatis에서 사용하기 위한 환경설정
+src/boardMapper.xml - 게시판 관련 SQL 정의
+
