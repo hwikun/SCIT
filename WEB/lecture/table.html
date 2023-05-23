@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>표만들기</h1>
+    <table border="1">
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+      </tr>
+    </table>
+    <table border="1">
+      <tr>
+        <td colspan="2">1</td>
+        <td rowspan="2">3</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>5</td>
+      </tr>
+    </table>
+    <table border="1">
+      <tr>
+        <td colspan="2">1</td>
+        <td rowspan="2">3</td>
+      </tr>
+      <tr>
+        <td>
+          <table border="1">
+            <tr>
+              <td>4-1</td>
+            </tr>
+            <tr>
+              <td>4-2</td>
+            </tr>
+          </table>
+        </td>
+        <td>5</td>
+      </tr>
+    </table>
+    <table border="1">
+      <tr>
+        <td colspan="4">1</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td colspan="2" rowspan="2">6</td>
+        <td colspan="2">7</td>
+      </tr>
+      <tr>
+        <td colspan="2">8</td>
+      </tr>
+    </table>
+  </body>
+</html>
