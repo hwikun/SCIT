@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입</title>
+  </head>
+  <body>
+    <form action="">
+      <table>
+        <tr>
+          <td>
+            <h1>기본정보 입력</h1>
+          </td>
+          <td>
+            <table>
+              <tr>
+                <td>이름</td>
+                <td>
+                  <input type="text" name="name" id="" />
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>아이디</td>
+                <td><input type="text" name="userid" id="" /></td>
+                <td>(4자~12자리의 영문자, 숫자 / @,#$등 특수문자는 제외)</td>
+              </tr>
+              <tr>
+                <td>이메일</td>
+                <td>
+                  <table>
+                    <tr>
+                      <td><input type="text" name="username" id="" /></td>
+                      <td>@</td>
+                      <td><input type="text" name="domain" id="" /></td>
+                    </tr>
+                  </table>
+                </td>
+                <td>
+                  <select name="selectEmail" id="">
+                    <option value=".com" selected>직접입력</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>비밀번호</td>
+                <td><input type="password" name="password1" id="" /></td>
+                <td>영문, 숫자, 특수문자 중 2가지 조합하여 8자~20자리</td>
+              </tr>
+              <tr>
+                <td>비밀번호 재입력</td>
+                <td><input type="password" name="password2" id="" /></td>
+                <td>비밀번호를 다시 한번 입력해주세요</td>
+              </tr>
+              <tr>
+                <td>휴대전화</td>
+                <td>
+                  <table>
+                    <tr>
+                      <td><input type="tel" name="phone" id="" /></td>
+                      <td>-</td>
+                      <td><input type="tel" name="phone" id="" /></td>
+                      <td>-</td>
+                      <td><input type="tel" name="phone" id="" /></td>
+                    </tr>
+                  </table>
+                </td>
+                <td>
+                  주문배송문자, ARS상담/중고매장 이용시 본인확인용으로 사용
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td colspan="2">
+                  <span><b>[중고매장 이용고객님]</b></span
+                  ><br />
+                  <span
+                    >매장에서 인증하신 휴대전화 번호를 입력하시면, 가입 후 매장
+                    구매 내역이 자동으로 통합됩니다.</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>개인정보 유효기간</td>
+                <td colspan="2">
+                  <input
+                    type="radio"
+                    name="personalInfo"
+                    value="1년"
+                    id="1년" />
+                  <label for="1년">1년</label>
+                  <input
+                    type="radio"
+                    name="personalInfo"
+                    value="3년"
+                    id="3년" />
+                  <label for="3년">3년</label>
+                  <input
+                    type="radio"
+                    name="personalInfo"
+                    value="5년"
+                    id="5년" />
+                  <label for="5년">5년</label>
+                  <input
+                    type="radio"
+                    name="personalInfo"
+                    value="0"
+                    id="forever" />
+                  <label for="forever">탈퇴 시 까지</label>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td colspan="2">
+                  설정된 개인정보 유효기간 동안 로그인 등 이용이 없으면 휴면
+                  계정이 되어 개인정보가 별도 분리 보관 됩니다.
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>
