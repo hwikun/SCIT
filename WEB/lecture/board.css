@@ -1,0 +1,28 @@
+.table {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1px;
+}
+
+form {
+  width: 50%;
+}
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+#submit {
+  grid-column: 1/-1;
+  max-width: 100px;
+  place-self: center;
+}
+
+.column1 {
+  background-color: gray;
+}
+.column2 {
+  background-color: wheat;
+}
