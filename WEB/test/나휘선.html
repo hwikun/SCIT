@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나휘선 20230605</title>
+    <style>
+        table {
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+            text-align: center;
+            border-collapse: collapse;
+            margin: 0 auto;
+            background-color: gray;
+        }
+        td {
+            width: 75px;
+            height: 75px;
+            border: none;
+        }
+        #result {
+            width: 300px;
+            height: 50px;
+            text-align: right;
+            font-size: 23px;
+            color: black;
+        }
+        input[type="button"] {
+            width: 75px;
+            height: 75px;
+            font-size: 20px;
+            margin: 4px;
+            font-weight: 700;
+            text-align: center;
+        }
+        tr {
+            border: none;
+        }
+    </style>
+    <script>
+        let operator = '';
+        let a, b;
+        function addNumber(num) {
+            const result = document.getElementById('result');
+            result.value += num;
+        }
+        function addOperator(op) {
+            const result = document.getElementById('result');
+            operator = op;
+            result.value += op;
+        }
+        function initialize() {
+            const result = document.getElementById('result');
+            result.value = '';
+            a = undefined;
+            b = undefined;
+            operator = '';
+        }
+        function calculate() {
+            const result = document.getElementById('result');
+            const arr = result.value.split(operator);
+            a = arr[0];
+            b = arr[1];
+            result.value += ''
+            if (operator === '+') {
+                result.value = parseInt(a) + parseInt(b);
+            } else if (operator === '-') {
+                result.value = parseInt(a) - parseInt(b);
+            } else if (operator === '*') {
+                result.value = parseInt(a) * parseInt(b);
+            } else if (operator === '/') {
+                result.value = parseInt(a) / parseInt(b);
+            }
+        }
+    </script>
+</head>
+<body>
+    <table>
+        <tr>
+            <td colspan="4"><input type="text" id="result" disabled></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="7" onclick="addNumber(7)"></td>
+            <td><input type="button" value="8" onclick="addNumber(8)"></td>
+            <td><input type="button" value="9" onclick="addNumber(9)"></td>
+            <td><input type="button" value="+" onclick="addOperator('+')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="4" onclick="addNumber(4)"></td>
+            <td><input type="button" value="5" onclick="addNumber(5)"></td>
+            <td><input type="button" value="6" onclick="addNumber(6)"></td>
+            <td><input type="button" value="-" onclick="addOperator('-')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="1" onclick="addNumber(1)"></td>
+            <td><input type="button" value="2" onclick="addNumber(2)"></td>
+            <td><input type="button" value="3" onclick="addNumber(3)"></td>
+            <td><input type="button" value="*" onclick="addOperator('*')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="0" onclick="addNumber(0)"></td>
+            <td><input type="button" value="C" onclick="initialize()"></td>
+            <td><input type="button" value="=" onclick="calculate()"></td>
+            <td><input type="button" value="/" onclick="addOperator('/')"></td>
+        </tr>
+</body>
+</html>
