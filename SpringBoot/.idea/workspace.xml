@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="62a5c532-1fc6-4d16-880a-d5959b4f8d39" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/test2/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test2/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test2/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test2/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test2/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test2/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test2/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test2/src/main/java/com/test/test2/Test2Application.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test2/src/test/java/com/test/test2/Test2ApplicationTests.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2QuXysP77DAhwxpnfFbH75GFzGt" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/Users/hwikun/Documents/dev/projects/SCIT/SpringBoot",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="62a5c532-1fc6-4d16-880a-d5959b4f8d39" name="변경" comment="" />
+      <created>1686204697229</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1686204697229</updated>
+    </task>
+    <servers />
+  </component>
+</project>
