@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>spring2</title>
@@ -23,10 +23,26 @@
 	  		<li><a href="param/model">모델</a></li>
 	  	</ul>
 	  </li>
-	  <li> 세션 사용 </li>
+	  <li> 세션 사용 
+	  	<ul>
+	  		<div th:if="${session.loginID != null}">
+		  		<li><a href="ss/session1">세션에 저장</a></li>
+		  		<li><a href="ss/session2">세션에서 읽기</a></li>
+		  		<li><a href="ss/session3">세션에서 삭제</a></li>
+	  		</div>
+	  		<li th:if="${session.loginID == null}"><a href="ss/login">로그인</a></li>
+	  		<li th:if="${session.loginID != null}"><a href="ss/logout">로그아웃</a></li>
+	  		<li th:if="${session.loginID != null}"><span th:text="${session.loginID}">id</span>님 접속중</li>
+	  	</ul>
+	  </li>
+	  
 	  <li> 쿠키 사용 </li>
 	  <li> Thymeleaf 사용 </li>
-	  <li> 연습문제 </li>
+	  <li> 연습문제 
+		<ul>
+			<li><a href="ex/calc1">폼에 입력한 값 계산하기</a></li>
+		</ul>	  
+	  </li>
 	</ol>
 
 </body>

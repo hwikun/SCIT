@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Calc1</title>
+<script>
+	function check() {
+		const n1 = document.getElementById('numA').value;
+		const n2 = document.getElementById('numB').value;
+		console.log(n1, n2);
+		
+		if (n1 == '' || n2 == '' || isNaN(n1) || isNan(n2) {
+			alert('숫자만 입력 가능합니다.')
+			return false;
+		}
+		return ture;
+	}
+</script>
+</head>
+<body>
+	<h1>[ calc test ]</h1>
+	<form action="calc1" method="post" onsubmit="return check()">
+		<input type="number" name="numA" id="numA" required />
+		<input type="number" name="numB" id="numB" required />
+		<input type="submit" value="submit" />
+	</form>
+</body>
+</html>
