@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>[ Thymeleaf 2 ]</h1>
+	<h2>*반복</h2>
+	[[${slist}]]
+	<br />
+	[[${map}]]
+	<br />
+	
+	<table style="border: 1px solid black">
+		<tr th:each="item : ${slist}">
+			<td th:text="${item}"></td>
+		</tr>
+	</table>
+	<table th:each="item : ${slist}" style="border: 1px solid black">
+		<tr>
+			<td th:text="${item}"></td>
+		</tr>
+	</table>
+	<table style="border: 1px solid black">
+		<tr>
+			<td th:each="item : ${slist}">
+			<p th:text="${item}"></p>
+			</td>
+		</tr>
+	</table>
+	<table style="border: 1px solid black">
+		<tr th:each="item, i: ${slist}">
+			<td>
+			<p th:text="${item}"></p>
+			<p th:text="${i.index}"></p>
+			</td>
+		</tr>
+	</table>
+	<table style="border: 1px solid black">
+		<tr th:each="item: ${map}">
+			<td th:text="${item.key}"></td>
+			<td th:text="${item.value}"></td>
+		</tr>
+	</table>
+	
+	<th:block th:each="n, status : ${#numbers.sequence(1, 5, 1)}">
+	<p>숫자 
+	<span th:text="${n}"></span>
+	<span th:text="${status.index}"></span>
+	<span th:text="${status.count}"></span>
+	<span th:text="${status.size}"></span>
+	<span th:text="${status.even}"></span>
+	<span th:text="${status.odd}"></span>
+	<span th:text="${status.first}"></span>
+	<span th:text="${status.last}"></span>
+	<span th:text="${status.current}"></span>
+	</p>
+	</th:block>
+	
+	<!-- 10 + 20 + 30 + 40 + 50 = ? -->
+	
+	<th:block th:each="n, status : ${#numbers.sequence(10, 50, 10)}">
+		<span th:text="${n}"></span>
+		<span th:if="${status.last}"> = ?</span>
+		<span th:unless="${status.last}"> + </span>
+	</th:block>
+	
+</body>
+</html>

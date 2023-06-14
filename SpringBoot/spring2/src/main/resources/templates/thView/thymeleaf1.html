@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 외부 css 파일 저장 static/css/main.css, a태그 대상으로 글자색 빨간색 -->
+	
+	<link rel="stylesheet" th:href="@{/css/main.css}" />
+</head>
+<body>
+	<h1>타임리프1</h1>
+	<h2>* 값 출력</h2>
+	<p>[[${str}]]</p>
+	<p th:text="${str}">기본값</p>
+	<p>
+	결과는
+	<span th:text="${num}">000</span>
+	입니다.
+	</p>
+	<h2>* 연산자 사용 == != < > <= >= eq ne gt lt ge le</h2>
+	<p>산술연산자 + - * / %</p>
+	<p th:text="${num + 1}"></p>
+	<p th:text="${num % 3}"></p>
+	<p>비교 연산자 == != > < >= <= eq ne gt lt ge le</p>
+	<p th:text="${num == 100}"></p>
+	<p th:text="${num eq 100}"></p>
+	<p>논리 연산자 and or not</p>
+	<p th:text="${num >= 50 and num <= 100}"></p>
+	<p th:text="${num == 100 or num == 200}"></p>
+	
+	<h2>* 문자열</h2>
+	<p th:text="${tag}"></p>
+	<p th:utext="${tag}"></p>
+	
+	<h2>객체 출력</h2>
+	<p th:text="${person}"></p>
+	
+	<p th:text="${person.name}"></p>
+	<p th:text="${person.age}"></p>
+	<p th:text="${person.phone}"></p>
+	
+	<ul th:object="${person}">
+		<li th:text="*{name}"></li>
+		<li th:text="*{age}"></li>
+		<li th:text="*{phone}"></li>
+	</ul>
+	
+	<h2>* 경로 생성</h2>
+	<p><a href="../param/input1">parameter 연습 페이지</a></p>
+	<p><a href="/spring2/param/input1">parameter 연습 페이지</a></p>
+	<p><a th:href="@{/param/input1}">parameter 연습 페이지</a></p>
+	
+	<!-- static폴더가 최상위 폴더처럼 인식 -->
+	<p><img th:src="@{/img/img1.jpg}" alt="flowers" /></p>
+	
+	<h2>* 문자열 연결</h2>
+	<p th:text="${str + 'abcd'}"></p> <!-- 문자열abcd -->
+	<p th:text="|${str}abcd|"></p> <!-- 문자열abcd -->
+	<p th:text="str + 'abcd'"></p> <!-- strabcd -->
+	
+	<p th:if="${str.equals('문자열')}">str의 값이 '문자열'일때 실행되는 부분</p>
+	<p th:if="${str == '문자열'}">str의 값이 '문자열'일때 실행되는 부분</p>
+	<p th:if="${num > 100}">num이 100보다 클때 실행되는 부분</p> 
+	<p th:unless="${num > 100}">num이 100보다 크지않을때 실행되는 부분</p> 
+	
+	<h2>* 스위치문</h2>
+	<div th:switch="${num}">
+		<p th:case="1">num이 1일때</p>
+		<p th:case="2">num이 2일때</p>
+		<p th:case="100">num이 100일때</p>
+		<p th:case="*">num이 그 외 숫자</p>
+	</div>
+<!--HTML 주석 -->
+<!--/* 타임리프 주석 */-->
+</body>
+</html>
