@@ -1,0 +1,11 @@
+--spring3 예제의 테이블 구조--
+
+create table person (
+	idnum varchar2(20) primary key, -- 주민번호
+	name varchar2(20) not null, -- 이름
+	age number(3) default 0 -- 나이
+);
+
+-- 저장 예시
+insert into person values('990101-1111111', '홍길동', 24);
+

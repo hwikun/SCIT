@@ -1,0 +1,8 @@
+-- 예제테이블 --
+
+create table address (
+	name varchar2(20) primary key,
+	address varchar2(2000) not null,
+	zipcode varchar2() not null,
+	phone varchar2(30) unique
+);
