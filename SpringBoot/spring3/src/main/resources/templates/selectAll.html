@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>전체조회</title>
+<style>
+	table {
+		border: 1px black solid;
+		table-layout:auto;
+		width:80%;
+		margin: 0 auto;
+		align: center;
+	}
+	th, td {
+		text-align: center;
+	}
+</style>
+</head>
+<body>
+	<h1>전체조회</h1>
+	
+	<table>
+		<tr>
+			<th>이름</th>
+			<th>주민번호</th>
+			<th>나이</th>
+		</tr>
+		<tr th:each="item : ${list}">
+			<td th:text="${item.name}"></td>
+			<td th:text="${item.idnum}"></td>
+			<td th:text="${item.age}"></td>
+		</tr>
+	</table>
+	
+	
+</body>
+</html>

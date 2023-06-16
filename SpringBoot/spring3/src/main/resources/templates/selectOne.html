@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Select One</title>
+</head>
+<body>
+	<h1>한명 조회</h1>
+	<th:block th:if="${person != null || person != undefined}">
+		<p th:object="${person}">
+			주민등록번호: <span th:text="*{idnum}"></span><br />
+			이름: <span th:text="*{name}"></span><br />
+			나이: <span th:text="*{age}"></span><br />
+		</p>
+	</th:block>
+	<th:block th:unless="${person != null}"><p>검색 결과가 없습니다.</p></th:block>
+</body>
+</html>

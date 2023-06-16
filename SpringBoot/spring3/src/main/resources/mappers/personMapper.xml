@@ -7,6 +7,25 @@
 	<insert id="insertPerson" parameterType="Person">
 		insert into person values (#{idnum}, #{name}, #{age})
 	</insert>
+	
+	<delete id="deletePerson" parameterType="String">
+		delete from person where idnum = #{idnum}
+	</delete>
 
+	<delete id="deletesByName" parameterType="String">
+		delete from person where name like '%' || #{name} || '%'
+	</delete>
+	
+	<update id="updatePerson" parameterType="Person">
+		update person set name = #{name}, age = #{age} where idnum = #{idnum}
+	</update>
+	
+	<select id="selectOne" parameterType="String" resultType="Person">
+		select * from person where idnum = #{idnum}
+	</select>
+	
+	<select id="selectAll" resultType="Person">
+		select * from person order by name
+	</select>
 	
 </mapper>
