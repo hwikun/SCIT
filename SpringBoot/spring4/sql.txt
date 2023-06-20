@@ -1,0 +1,16 @@
+-- 방명록 저장 테이블
+
+create table guestbook(
+	num number primary key, -- 글번호
+	name varchar2(20) not null,
+	password varchar2(20) not null,
+	message varchar2(1000) not null,
+	inputdate date default sysdate
+);
+
+-- 방명록 시퀀스
+create sequence guestbook_seq;
+
+inset into guestbook (num, name, password, message) values(guestbook_seq.nextval, #{name}, #{password}, #{message});
+
+ 

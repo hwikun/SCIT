@@ -15,6 +15,20 @@
 		text-align: center;
 	}
 </style>
+<script>
+	function deletePerson(id) {
+		alert(id)
+		if (confirm('삭제하시겠습니까?')) {
+			location.href = 'deletePerson?idnum=' +id
+		}
+	}
+	function updatePerson(id) {
+		alert(id);
+		if (confirm('삭제하시겠습니까?')) {
+			location.href = 'updatePerson?idnum='+id
+		}
+	}
+</script>
 </head>
 <body>
 	<h1>전체조회</h1>
@@ -29,6 +43,14 @@
 			<td th:text="${item.name}"></td>
 			<td th:text="${item.idnum}"></td>
 			<td th:text="${item.age}"></td>
+			<td>
+				<input type="button" value="삭제" th:id="${item.idnum}" th:idnum="${item.idnum}" th:onclick="deletePerson(this.getAttribute('idnum'))" />
+				<a th:href="|javascript:deletePerson('${item.idnum}')|">삭제</a>
+			</td>
+			<td>
+				<input type="button" value="수정" th:id="${item.idnum}" th:idnum="${item.idnum}" th:onclick="updatePerson(this.getAttribute('idnum'))" />
+				<a th:href="|javascript:updatePerson('${item.idnum}')|">수정</a>
+			</td>
 		</tr>
 	</table>
 	

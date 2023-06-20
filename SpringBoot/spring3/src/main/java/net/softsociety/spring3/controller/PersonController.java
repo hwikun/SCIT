@@ -71,14 +71,28 @@ public class PersonController {
     return "redirect:/";
   }
 
+  @GetMapping("deletePerson")
+  public String deletePerson(String idnum, Model model) {
+    int n = service.deletePerson(idnum);
+    if (n == 0) {
+      log.debug("삭제실패");
+      model.addAttribute("error", "삭제실패");
+      return "deleteForm";
+    }
+    return "redirect:/selectAll";
+  }
+
+  // 회원정보 수정
   @GetMapping("update")
   public String update() {
-
+    // 수정 폼을 출력하고 주민번호, 이름 나이를 입력받는다.
     return "updateForm";
   }
 
   @PostMapping("update")
   public String update(Person p) {
+    // 주민등록번호 기준으로 찾아서 이름과 나이 수정
+
     service.updatePerson(p);
     return "redirect:/";
   }

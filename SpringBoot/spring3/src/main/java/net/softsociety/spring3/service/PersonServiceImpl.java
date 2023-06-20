@@ -23,7 +23,7 @@ public class PersonServiceImpl implements PersonService {
   @Override
   public int deletePerson(String idnum) {
     int n = dao.deletePerson(idnum);
-    return 0;
+    return n;
   }
 
   @Override

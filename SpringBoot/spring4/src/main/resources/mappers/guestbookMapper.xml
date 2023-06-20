@@ -1,0 +1,18 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="net.softsociety.spring4.dao.GuestbookDAO">
+
+<insert id="insert" parameterType="Guestbook">
+		insert into guestbook (num, name, password, message) values(guestbook_seq.nextval, #{name}, #{password}, #{message})
+	</insert>
+<select id="findAll" resultType="Guestbook">
+	select num, name, message, to_char(inputdate, 'yy.mm.dd') inputdate from guestbook
+</select>
+<delete id="delete">
+delete from guestbook where num = #{num} and password = #{password}
+</delete>
+
+
+</mapper>
