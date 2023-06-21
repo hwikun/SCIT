@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>방명록</title>
+<script>
+	function del(n){
+		let pw = document.getElementById('password' + n).value;
+		document.getElementById('delnum').value = n;
+		document.getElementById('delpassword').value = pw;
+		document.getElementById('deleteForm').submit();
+	}
+	function update(n) {
+		let pw = document.getElementById('password' + n).value;
+		document.getElementById('upnum').value = n;
+		document.getElementById('uppassword').value = pw;
+		document.getElementById('updateForm').submit();
+	}
+</script>
+</head>
+<body>
+	<h1>[ 방명록 2 ]</h1>
+	
+<!-- 삭제 폼 -->
+	<form th:action="@{/delete}" method="post" id="deleteForm">
+		<input type="hidden" name="num" value="0" id="delnum">
+		<input type="hidden" name="password" value="" id="delpassword">
+	</form>
+	<form th:action="@{/gotoupdate}" method="post" id="updateForm">
+		<input type="hidden" name="num" value="0" id="upnum">
+		<input type="hidden" name="password" value="" id="uppassword">
+	</form>
+	
+	
+	<p><a th:href="@{/insert}" th:text="글쓰기"></a></p><hr>
+	
+	<table th:each="g : ${list}" class="list">
+		<tr>
+			<th>이름</th>
+			<td th:text="${g.name}"></td>
+		</tr>
+		<tr>
+			<th>작성일</th>
+			<td th:text="${g.inputdate}"></td>
+		</tr>
+		
+		<tr>
+			<td colspan="2"><pre th:text="${g.message}"></pre></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+		    비밀번호	<input type="password" th:id="|password${g.num}|">
+					    <input type="button" value="삭제" th:num="${g.num}" onclick="del(this.getAttribute('num'))">
+					    <input type="button" value="수정" th:num="${g.num}" onclick="update(this.getAttribute('num'))">
+			</td>
+		</tr>
+	</table>
+	<hr />
+</body>
+</html>

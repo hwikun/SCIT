@@ -39,4 +39,28 @@ public class HomeController {
     int n = service.delete(g);
     return "redirect:/";
   }
+
+  @GetMapping("list")
+  public String list(Model model) {
+    ArrayList<Guestbook> list = service.findAll();
+    model.addAttribute("list", list);
+    return "list2";
+  }
+
+  @PostMapping("gotoupdate")
+  public String gotoupdate(Guestbook g, Model model) {
+    Guestbook guestbook = service.findOne(g);
+    if (guestbook != null) {
+      model.addAttribute("item", guestbook);
+      return "updateForm";
+    } else {
+      return "redirect:/list";
+    }
+  }
+
+  @PostMapping("update")
+  public String update(Guestbook g) {
+    int n = service.update(g);
+    return "redirect:/list";
+  }
 }

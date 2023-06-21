@@ -30,6 +30,15 @@ public class GuestbookServiceImpl implements GuestbookService {
     return n;
   }
 
+  @Override
+  public int update(Guestbook g) {
+    int n = dao.update(g);
+    return n;
+  }
 
-
+  @Override
+  public Guestbook findOne(Guestbook g) {
+    Guestbook guestbook = dao.findOne(g);
+    return guestbook;
+  }
 }

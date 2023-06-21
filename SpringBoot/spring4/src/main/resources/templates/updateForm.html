@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>수정하기</title>
+</head>
+<body>
+	<h1>[ 수정하기 ]</h1>
+	[[${item}]]
+	<form action="update" method="post">
+		<input type="hidden" name="num" th:value="${item.num}" />
+		<input type="text" name="name" th:value="${item.name}" />
+		<input type="password" name="password" th:value="${item.password}" />	
+		<textarea name="message" id="message" cols="30" rows="10" th:text="${item.message}"></textarea>
+		<input type="submit" value="수정" />
+	</form>
+</body>
+</html>

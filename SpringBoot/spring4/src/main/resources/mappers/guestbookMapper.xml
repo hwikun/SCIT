@@ -14,5 +14,12 @@
 delete from guestbook where num = #{num} and password = #{password}
 </delete>
 
+<update id="update" parameterType="Guestbook">
+update guestbook set name = #{name}, password = #{password}, message = #{message} where num = #{num} and password = #{password}
+</update>
+
+<select id="findOne" parameterType="Guestbook" resultType="Guestbook">
+select num, name, password, message, to_char(inputdate, 'yy.mm.dd') inputdate from guestbook where num = #{num} and password = #{password}
+</select>
 
 </mapper>

@@ -11,4 +11,8 @@ public interface GuestbookDAO {
   public ArrayList<Guestbook> findAll();
 
   public int delete(Guestbook g);
+
+  public int update(Guestbook g);
+
+  public Guestbook findOne(Guestbook g);
 }
