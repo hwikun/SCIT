@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>회원가입</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <script>
+    	function checkId() {
+    		const id = document.getElementById("memberid").value;
+    		document.getElementById('checkId').value = id;
+    		document.getElementById('checkIdForm').submit();
+    	}
+    </script>
+  </head>
+  <body>
+  <form th:action="@{/member/checkId}" method="post" id="checkIdForm">
+  	<input type="hidden" value="0" id="checkId" />
+  </form>
+  <form th:action="@{/member/join}" method="POST" class="joinForm">
+    <h2>회원가입</h2>
+      <div class="textForm id_input">
+        <input id="memberid" name="memberid" type="text" class="signupinput" placeholder="아이디" />
+        <input type="button" value="아이디중복확인" onclick="checkId()"/>
+      </div>
+      <div class="textForm">
+        <input name="memberpw" type="password" class="signupinput" placeholder="비밀번호" />
+      </div>
+      <div class="textForm">
+        <input name="memberpwConfirm" type="password" class="signupinput" placeholder="비밀번호 확인" />
+      </div>
+      <div class="textForm">
+        <input name="membername" type="text" class="signupinput" placeholder="이름" />
+      </div>
+       <div class="textForm">
+        <input name="email" type="text" class="signupinput" placeholder="이메일" />
+      </div>
+      <div class="textForm">
+        <input name="phone" type="tel" class="signupinput" placeholder="전화번호" />
+      </div>
+      <div class="textForm">
+        <input name="address" type="text" class="signupinput" placeholder="주소" />
+      </div>
+      
+      <input type="submit" class="btn" value="J O I N"/>
+    </form>
+  </body>
+</html>
