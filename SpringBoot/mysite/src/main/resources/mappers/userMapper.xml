@@ -7,8 +7,8 @@
 <insert id="createUser" parameterType="User">
 insert
 	into
-		mysite_users(usersq, username, password, email, phone, address)
-	values (users_seq.nextval, #{username}, #{password}, #{email}, #{phone}, #{address})
+		mysite_users(usersq, username, name, password, email, phone, address)
+	values (users_seq.nextval, #{username}, #{name}, #{password}, #{email}, #{phone}, #{address})
 </insert>
 
 <select id="getUser" parameterType="string" resultType="User">
