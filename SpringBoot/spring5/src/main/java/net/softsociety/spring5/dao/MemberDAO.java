@@ -8,4 +8,6 @@ public interface MemberDAO {
 
   public int signUp(Member m);
 
+  public Member getMember(String memberid);
+
 }

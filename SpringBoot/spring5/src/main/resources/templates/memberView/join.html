@@ -6,21 +6,19 @@
     <link rel="stylesheet" th:href="@{/css/style.css}" />
     <script>
     	function checkId() {
-    		const id = document.getElementById("memberid").value;
-    		document.getElementById('checkId').value = id;
-    		document.getElementById('checkIdForm').submit();
+    		window.open('checkid', 'idwin', 'width=300, height=200, top=400 left=800');
     	}
     </script>
   </head>
   <body>
-  <form th:action="@{/member/checkId}" method="post" id="checkIdForm">
+  <form th:action="@{/member/checkid}" method="post" id="checkIdForm">
   	<input type="hidden" value="0" id="checkId" />
   </form>
   <form th:action="@{/member/join}" method="POST" class="joinForm">
     <h2>회원가입</h2>
-      <div class="textForm id_input">
-        <input id="memberid" name="memberid" type="text" class="signupinput" placeholder="아이디" />
-        <input type="button" value="아이디중복확인" onclick="checkId()"/>
+      <div class="textForm id_input" onclick="checkId()">
+        <input id="memberid" name="memberid" type="text" class="signupinput" placeholder="아이디" readonly />
+        <input type="button" value="아이디중복확인"/>
       </div>
       <div class="textForm">
         <input name="memberpw" type="password" class="signupinput" placeholder="비밀번호" />

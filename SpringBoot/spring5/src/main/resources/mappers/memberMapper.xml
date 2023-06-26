@@ -12,4 +12,8 @@ insert
 		(#{memberid}, #{memberpw}, #{membername}, #{email}, #{phone}, #{address})
 </insert>
 
+<select id="getMember" parameterType="string" resultType="Member">
+select * from spring5_member where memberid = #{memberid}
+</select>
+
 </mapper>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>아이디 확인</title>
+<style>
+	body {
+		text-align:center;
+	}
+	.available {
+		color: lime;
+	}
+	.unavailable {
+		color: red;
+	}
+</style>
+<script>
+	function check() {
+		let id = documnet.getElemnetById('searchid');
+		if(id.value == '') {
+			alert("검색할 아이디를 입력하세요");
+			return false;
+		}
+		return true;
+	}
+	function inputid(id) {
+		alert(id);
+		opener.window.document.getElementById("memberid").value = id;
+		this.close();
+	}
+</script>
+</head>
+<body>
+	
+
+	<h2>[ 아이디 중복 확인 ]</h2>
+	<form th:action="@{/member/checkid}" method="post" onsubmit="return check()">
+		검색할 ID
+		<input type="text" id="searchid" th:value="${searchid}" required name="searchid"/>
+		<input type="submit" value="검색" />
+	</form>
+	
+	<th:block th:if="${result != null}">
+		<p th:if="${result == true}" class="available">
+			<span>사용 가능한 아이디 입니다.</span>
+			<input type="button" th:id="${searchid}" onclick="inputid(getAttribute('id'))" value="ID 사용"/>
+		</p>
+		<p th:if="${result == false}" class="unavailable"><span>사용 불가능한 아이디 입니다.</span></p>
+	</th:block>
+
+	
+	
+</body>
+</html>

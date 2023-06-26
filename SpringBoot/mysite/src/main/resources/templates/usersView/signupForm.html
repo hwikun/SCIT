@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>회원가입</title>
+    <link rel="stylesheet" th:href="@{/css/signup.css}" />
+    <script>
+	    function checkId() {
+			window.open('checkid', 'idwin', 'width=300, height=200, top=400 left=800');
+		}
+    	function checkpw(){
+    		const pw1 = getElementById("pw1").value;
+    		const pw2 = getElementById("pw2").vlaue;
+    		console.log("pw1: ", pw1, "\npw2: ", pw2);
+    		if(pw1 !== pw2) {
+    			return false;
+    		}
+    		return true;
+    	}
+    	function inputAddress(){
+    		window.open('inputaddress', 'addresswin', 'width=500, height=500, top=400, left=800');
+    	}
+    </script>
+  </head>
+  <body>
+  <form th:action="@{/users/signup}" method="POST" class="joinForm">
+    <h2>회원가입</h2>
+      <div class="textForm id_input" onclick="checkId()">
+        <input id="username" name="username" type="text" class="signupinput" placeholder="아이디" readonly />
+        <input type="button" value="아이디중복확인"/>
+      </div>
+      <div class="textForm">
+        <input name="name" type="text" class="signupinput" placeholder="이름" />
+      </div>
+      <div class="textForm">
+        <input name="password" type="password" class="signupinput" placeholder="비밀번호" id="pw1" />
+      </div>
+      <div class="textForm">
+        <input name="passwordConfirm" type="password" class="signupinput" placeholder="비밀번호 확인" id="pw2" onchange="checkpw()"/>
+      </div>
+       <div class="textForm">
+        <input name="email" type="text" class="signupinput" placeholder="이메일" />
+      </div>
+      <div class="textForm">
+        <input name="phone" type="tel" class="signupinput" placeholder="전화번호" />
+      </div>
+      <div class="textForm" onclick="inputAddress()">
+        <input id="address" name="address" type="text" class="signupinput" placeholder="주소" readonly/>
+      </div>
+      
+      <input type="submit" class="btn" value="J O I N" onclick="return checkpw()"/>
+    </form>
+  </body>
+</html>

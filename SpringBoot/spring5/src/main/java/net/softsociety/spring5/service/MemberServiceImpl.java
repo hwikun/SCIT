@@ -18,4 +18,15 @@ public class MemberServiceImpl implements MemberService {
     return n;
   }
 
+  @Override
+  public Member getMember(String memberid) {
+    Member m = dao.getMember(memberid);
+    return m;
+  }
+
+  @Override
+  public boolean idCheck(String memberid) {
+    return dao.getMember(memberid) == null;
+  }
+
 }

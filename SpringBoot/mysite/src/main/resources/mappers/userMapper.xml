@@ -1,0 +1,18 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="net.softsociety.mysite.dao.UserDAO">
+
+<insert id="createUser" parameterType="User">
+insert
+	into
+		mysite_users(usersq, username, password, email, phone, address)
+	values (users_seq.nextval, #{username}, #{password}, #{email}, #{phone}, #{address})
+</insert>
+
+<select id="getUser" parameterType="string" resultType="User">
+select * from mysite_users where username = #{username}
+</select>
+
+</mapper>

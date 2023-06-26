@@ -2,6 +2,7 @@ package net.softsociety.spring5.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,10 +33,17 @@ public class MemberController {
     return "redirect:/member/join";
   }
 
-  @PostMapping("checkId")
-  public String checkId(String memberid) {
-    log.debug("memberId: {}", memberid);
-    Member m = service.getMember(memberid);
-    return "redirect:/member/join";
+  @GetMapping("checkid")
+  public String checkid() {
+    return "memberView/checkid";
+  }
+
+  @PostMapping("checkid")
+  public String checkId(String searchid, Model model) {
+    log.debug("memberId: {}", searchid);
+    boolean result = service.idCheck(searchid);
+    model.addAttribute("searchid", searchid);
+    model.addAttribute("result", result);
+    return "memberView/checkid";
   }
 }
