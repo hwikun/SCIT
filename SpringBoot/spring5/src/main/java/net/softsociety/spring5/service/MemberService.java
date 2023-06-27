@@ -10,4 +10,6 @@ public interface MemberService {
 
   public boolean idCheck(String memberid);
 
+  public boolean updateMember(Member member);
+
 }

@@ -1,6 +1,8 @@
 package net.softsociety.spring5.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +18,7 @@ import net.softsociety.spring5.service.MemberService;
 public class MemberController {
 
   @Autowired
-  MemberService service;
+  private MemberService service;
 
   @GetMapping("join")
   public String join() {
@@ -46,4 +48,35 @@ public class MemberController {
     model.addAttribute("result", result);
     return "memberView/checkid";
   }
+
+  @GetMapping("loginForm")
+  public String login() {
+    return "memberView/loginForm";
+  }
+
+  // 수정form으로 이동
+  @GetMapping("updateForm")
+  public String updateForm(@AuthenticationPrincipal UserDetails user, Model model) {
+    // 로그인한 아이디로 회원정보 검색
+    Member me = service.getMember(user.getUsername());
+    // 검색 결과를 Model에 저장
+    model.addAttribute("user", me);
+    // HTML로 포워딩
+    log.debug("user: {}", user);
+    return "memberView/updateForm";
+
+  }
+
+  // 수정 처리
+  @PostMapping("update")
+  public String update(@AuthenticationPrincipal UserDetails user, Member member) {
+    // 로그인한 아이디를 member 객체에 추가
+    member.setMemberid(user.getUsername());
+    // Member 객체를 서비스로 전달하여 db 수정
+    boolean result = service.updateMember(member);
+    if (result == true)
+      return "redirect:/";
+    return "memberView/updateForm";
+  }
+
 }

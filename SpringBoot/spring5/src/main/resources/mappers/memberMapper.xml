@@ -16,4 +16,10 @@ insert
 select * from spring5_member where memberid = #{memberid}
 </select>
 
+<update id="updateMember" parameterType="Member">
+update spring5_member 
+set membername = #{membername}, email = #{email}, phone = #{phone}, address = #{address}
+where memberid = #{memberid}
+</update>
+
 </mapper>

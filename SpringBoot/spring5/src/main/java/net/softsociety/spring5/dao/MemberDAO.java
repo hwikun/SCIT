@@ -10,4 +10,6 @@ public interface MemberDAO {
 
   public Member getMember(String memberid);
 
+  public int updateMember(Member member);
+
 }

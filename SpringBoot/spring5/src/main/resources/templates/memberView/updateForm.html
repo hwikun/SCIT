@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>개인정보수정</title>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<form th:action="@{/member/update}" method="POST" class="joinForm">
+    <h2>개인정보 수정</h2>
+      <div class="textForm">
+        <input name="membername" type="text" class="signupinput" placeholder="이름" th:value="${user.membername}" readonly />
+      </div>
+       <div class="textForm">
+        <input name="email" type="text" class="signupinput" placeholder="이메일" th:value="${user.email}" />
+      </div>
+      <div class="textForm">
+        <input name="phone" type="tel" class="signupinput" placeholder="전화번호" th:value="${user.phone}" />
+      </div>
+      <div class="textForm">
+        <input name="address" type="text" class="signupinput" placeholder="주소" th:value="${user.address}" />
+      </div>
+      
+      <input type="submit" class="btn" value="U P D A T E"/>
+    </form>
+</body>
+</html>
