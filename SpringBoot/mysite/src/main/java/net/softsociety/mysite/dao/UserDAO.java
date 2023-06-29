@@ -10,4 +10,6 @@ public interface UserDAO {
 
   public User getUser(String searchid);
 
+  public int updateUser(User user);
+
 }

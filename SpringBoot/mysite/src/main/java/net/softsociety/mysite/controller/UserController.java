@@ -1,6 +1,8 @@
 package net.softsociety.mysite.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,6 +54,20 @@ public class UserController {
   @PostMapping("inputaddress")
   public String inputAddress(Model model) {
     return "usersView/signup";
+  }
+
+  @GetMapping("login")
+  public String login() {
+    return "usersView/loginForm";
+  }
+
+  @GetMapping("update")
+  public String update(@AuthenticationPrincipal UserDetails authUser, User user) {
+    user.setUsername(authUser.getUsername());
+    boolean result = service.updateUser(user);
+    if (result == true)
+      return "redirect:/";
+    return "usersView/updateForm";
   }
 
 }

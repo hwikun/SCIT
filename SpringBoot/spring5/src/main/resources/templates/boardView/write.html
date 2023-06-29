@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>글쓰기</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+	<h1>[ 글쓰기 ]</h1>
+	<form th:action="@{/board/write}" method="post" class="flex justify-center">
+		<div class="grid grid-cols-5 bg-gray-200 gap-1">
+			<div class="place-self-center">제목</div>
+			<div class="col-span-4 w-full p-2"><input type="text" name="title" required class="w-full rounded-md"/></div>
+			<div class="place-self-center">내용</div>
+			<div class="col-span-4 p-2"><textarea name="contents" id="" cols="40" rows="10" class="rounded-md"></textarea></div>
+			<div class="place-self-center">파일</div>
+			<div class="col-span-4 p-2"><input type="file" name="originalfile"/></div>
+			<input type="submit" value="저장" class="col-span-5 place-self-center"/>
+		</div>
+	</form>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="net.softsociety.spring5.dao.BoardDAO">
+
+<select id="getList" resultType="Board">
+select boardnum, memberid, title, contents, hits, to_char(inputdate, 'yy/mm/dd') inputdate from spring5_board
+</select>
+
+<insert id="writeBoard" parameterType="Board">
+insert into 
+	spring5_board(boardnum, memberid, title, contents, originalfile)
+values(spring5_board_seq.nextval, #{memberid}, #{title}, #{contents}, #{originalfile})
+</insert>
+
+<select id="getBoard" parameterType="int" resultType="Board">
+select * from spring5_board where boardnum = #{boardnum}
+</select>
+</mapper>

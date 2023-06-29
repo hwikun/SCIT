@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="www.thymeleaf.org">
+<html xmlns:th="www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <title>[ spring4 - 방명록 ]</title>
@@ -9,7 +10,17 @@
 </head>
 <body>
 	<h1>[ spring4 - 방명록 ]</h1>
-	<p><a th:href="@{/insert}">글쓰기</a></p>
+	
+	<p sec:authorize="isAuthenticated()">
+		<span th:text="${#authentication.name}"></span>님 로그인중
+		<a th:href="@{/member/logout}"><span>로그아웃</span></a>
+	</p>
+	<p sec:authorize="isAnonymous()">
+   		<a th:href="@{/member/loginForm}">로그인</a>
+   		<a th:href="@{/member/join}">회원가입</a>
+	</p>
+	
+	<p sec:authorize="isAuthenticated()"><a th:href="@{/guestbook/insert}">글쓰기</a></p>
 	<th:block th:each="item : ${list}">
 		<hr />
 		<h5 th:text="${item.num}"></h5>

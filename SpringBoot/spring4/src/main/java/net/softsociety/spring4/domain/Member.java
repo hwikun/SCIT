@@ -1,4 +1,4 @@
-package net.softsociety.spring5.domain;
+package net.softsociety.spring4.domain;
 
 import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Member implements UserDetails {
+  private static final long serialVersionUID = -3345500065361985535L;
   String memberid;
   String memberpw;
   String membername;
@@ -24,7 +25,7 @@ public class Member implements UserDetails {
   public Collection<? extends GrantedAuthority> getAuthorities() {
     // TODO Auto-generated method stub
     return null;
-  } // 유저 역할 가져옴. 필요없어서사용x
+  }
 
   @Override
   public String getPassword() {

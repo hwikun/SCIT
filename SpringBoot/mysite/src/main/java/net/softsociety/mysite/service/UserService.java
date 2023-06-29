@@ -8,4 +8,6 @@ public interface UserService {
 
   boolean idCheck(String searchid);
 
+  boolean updateUser(User user);
+
 }

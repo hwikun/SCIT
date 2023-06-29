@@ -13,10 +13,10 @@ import net.softsociety.spring5.domain.Member;
 public class MemberServiceImpl implements MemberService {
 
   @Autowired
-  private MemberDAO dao;
+  MemberDAO dao;
 
   @Autowired
-  private PasswordEncoder passwordEncoder;
+  PasswordEncoder passwordEncoder;
 
 
   @Override

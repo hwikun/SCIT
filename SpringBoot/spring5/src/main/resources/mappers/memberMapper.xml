@@ -18,7 +18,11 @@ select * from spring5_member where memberid = #{memberid}
 
 <update id="updateMember" parameterType="Member">
 update spring5_member 
-set membername = #{membername}, email = #{email}, phone = #{phone}, address = #{address}
+set 
+<if test="memberpw != null and memberpw != ''">
+memberpw = #{memberpw}
+</if>
+membername = #{membername}, email = #{email}, phone = #{phone}, address = #{address}
 where memberid = #{memberid}
 </update>
 

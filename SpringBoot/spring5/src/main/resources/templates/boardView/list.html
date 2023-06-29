@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>글 목록</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="px-24">
+	<h1>[ 글 목록 ]</h1>
+	<a th:href="@{/board/write}"><span>글 쓰기</span></a>
+	<a th:href="@{/}"><span>HOME</span></a>
+	<div class="grid grid-cols-1">
+		<div class="grid grid-cols-6 gap-x-1">
+			<div class="p-2 bg-gray-200">번호</div>
+			<div class="p-2 col-span-2 bg-gray-200">제목</div>
+			<div class="p-2 bg-gray-200">작성자</div>
+			<div class="p-2 bg-gray-200">조회수</div>
+			<div class="p-2 bg-gray-200">작성일</div>
+		</div>
+		<div th:each="item : ${list}">
+			<a th:href="@{|/board/${item.boardnum}|}" class="grid grid-cols-6 gap-x-1 mb-1">
+				<th:block>
+					<div class="p-2 bg-orange-100" th:text="${item.boardnum}"></div>
+					<div class="p-2 bg-orange-100 col-span-2" th:text="${item.title}"></div>
+					<div class="p-2 bg-orange-100" th:text="${item.memberid}"></div>
+					<div class="p-2 bg-orange-100" th:text="${item.hits}"></div>
+					<div class="p-2 bg-orange-100" th:text="${item.inputdate}"></div>
+				</th:block>
+			</a>
+		</div>
+	</div>
+</body>
+</html>

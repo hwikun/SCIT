@@ -1,20 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <title>방명록</title>
+<script>
+	const loggedpw = document.getElementById("hiddenpw").value;
+	alert(loggedpw);
+</script>
 </head>
 <body>
 	<h1>글쓰기</h1>
-	<form action="insert" method="post">
+	<form th:action="@{/guestbook/insert}" method="post">
 		<table>
-			<tr>
+			<tr sec:authorize="isAnonymous()">
 				<th>이름</th>
 				<td>
-					<input type="text" name="name" id="name" maxlength="10" required />
+					<input  type="text" name="name" id="name" maxlength="10" required />
+					
 				</td>
 			</tr>
-			<tr>
+			<tr sec:authorize="isAnonymous()">
 				<th>비밀번호</th>
 				<td>
 					<input type="password" name="password" maxlength="10" id="password" required />

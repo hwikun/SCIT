@@ -18,7 +18,7 @@ import net.softsociety.spring5.service.MemberService;
 public class MemberController {
 
   @Autowired
-  private MemberService service;
+  MemberService service;
 
   @GetMapping("join")
   public String join() {

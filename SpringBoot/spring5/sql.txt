@@ -17,4 +17,20 @@ values ('aaa', '123', '홍길동', 'aaa@aaa.com', '010-1111-1111', '서울시 �
 
 --게시글
 
+create table spring5_board (
+  boardnum number primary key, --글번호 
+  memberid vachar2(20) references spring5_member(memberid),--작성자 아이디 
+  title varchar(300) not null, --제목 
+  varchar2(3000) not null, --글내용 
+  hits number default 0, --조회수
+  inputdate date default sysdate, --작성일 
+  orginalfile varchar2(300), --첨부파일 이름
+ savedfile varchar2(100)--실제 저장된 파일이름
+ );
+
+
 --게시글 번호 시퀀스
+
+create sequence spring5_board_seq;
+
+-- 글저장 예
