@@ -11,4 +11,6 @@ public interface BoardService {
 
   public Board getBoard(int boardnum);
 
+  public boolean hitsCountUp(Board b);
+
 }

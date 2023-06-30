@@ -16,4 +16,9 @@ public class Board {
   String inputdate;
   String originalfile;
   String savedfile;
+
+  public void hitsCountUp(Board b) {
+    this.hits += 1;
+
+  }
 }

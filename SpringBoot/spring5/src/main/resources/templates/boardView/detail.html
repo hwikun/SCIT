@@ -2,10 +2,23 @@
 <html xmlns:th="www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<script src="https://cdn.tailwindcss.com"></script>
 <title th:text="${board.title}"></title>
 </head>
-<body>
-	[[${board.title}]]
-	[[${board.contents}]]
+<body class="px-24">
+	<h1 class="mx-auto my-0 text-4xl mb-16">[ 글읽기 ]</h1>
+	<div class="flex flex-col">
+		<div class="flex flex-col">
+			<div class="text-lg font-bold" th:text="${board.title}">title</div>
+			<div class="flex justify-between">
+				<div>
+					<span class="mr-5" th:text="${board.memberid}">작성자</span>
+					<span th:text="${board.inputdate}">작성일</span>
+				</div>
+				<div th:text="${board.hits}">조회수</div>
+			</div>
+		</div>
+		<pre th:text="${board.contents}"></pre>
+	</div>
 </body>
 </html>

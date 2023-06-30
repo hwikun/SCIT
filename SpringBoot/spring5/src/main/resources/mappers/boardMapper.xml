@@ -5,7 +5,7 @@
 <mapper namespace="net.softsociety.spring5.dao.BoardDAO">
 
 <select id="getList" resultType="Board">
-select boardnum, memberid, title, contents, hits, to_char(inputdate, 'yy/mm/dd') inputdate from spring5_board
+select boardnum, memberid, title, contents, hits, to_char(inputdate, 'yy/mm/dd') inputdate from spring5_board order by boardnum desc
 </select>
 
 <insert id="writeBoard" parameterType="Board">
@@ -17,4 +17,8 @@ values(spring5_board_seq.nextval, #{memberid}, #{title}, #{contents}, #{original
 <select id="getBoard" parameterType="int" resultType="Board">
 select * from spring5_board where boardnum = #{boardnum}
 </select>
+
+<update id="hitsCountUp" parameterType="Board">
+update spring5_board set hits = #{hits} where boardnum = #{boardnum}
+</update>
 </mapper>

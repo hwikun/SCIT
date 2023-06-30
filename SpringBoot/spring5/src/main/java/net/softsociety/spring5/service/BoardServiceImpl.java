@@ -30,4 +30,10 @@ public class BoardServiceImpl implements BoardService {
     return b;
   }
 
+  @Override
+  public boolean hitsCountUp(Board b) {
+    int n = dao.hitsCountUp(b);
+    return n != 0;
+  }
+
 }

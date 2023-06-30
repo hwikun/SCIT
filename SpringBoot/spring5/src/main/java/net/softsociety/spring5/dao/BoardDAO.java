@@ -13,4 +13,6 @@ public interface BoardDAO {
 
   public Board getBoard(int boardnum);
 
+  public int hitsCountUp(Board b);
+
 }

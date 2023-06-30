@@ -18,7 +18,7 @@
 			<div class="p-2 bg-gray-200">작성일</div>
 		</div>
 		<div th:each="item : ${list}">
-			<a th:href="@{|/board/${item.boardnum}|}" class="grid grid-cols-6 gap-x-1 mb-1">
+			<a th:href="@{/board/read(num=${item.boardnum})}" class="grid grid-cols-6 gap-x-1 mb-1">
 				<th:block>
 					<div class="p-2 bg-orange-100" th:text="${item.boardnum}"></div>
 					<div class="p-2 bg-orange-100 col-span-2" th:text="${item.title}"></div>
