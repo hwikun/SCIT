@@ -1,24 +1,47 @@
 <!DOCTYPE html>
-<html xmlns:th="www.thymeleaf.org">
+<html xmlns:th="www.thymeleaf.org"
+ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <script src="https://cdn.tailwindcss.com"></script>
+<script>
+	function ondelete(num){
+		if(window.confirm("정말로 삭제하시겠습니까?")){
+			location.href = "delete?boardnum=" + num;
+		}
+	}
+	function onupdate(num){
+		location.href = "update?boardnum=" + num;
+	}
+</script>
 <title th:text="${board.title}"></title>
 </head>
 <body class="px-24">
 	<h1 class="mx-auto my-0 text-4xl mb-16">[ 글읽기 ]</h1>
 	<div class="flex flex-col">
-		<div class="flex flex-col">
+		<div class="flex flex-col mb-5">
 			<div class="text-lg font-bold" th:text="${board.title}">title</div>
 			<div class="flex justify-between">
-				<div>
-					<span class="mr-5" th:text="${board.memberid}">작성자</span>
-					<span th:text="${board.inputdate}">작성일</span>
+				<div class="flex justify-between">
+					<p>작성자 <span class="mr-5" th:text="${board.memberid}"></span></p>
+					<p>작성일 <span th:text="${board.inputdate}"></span></p>
+					
 				</div>
-				<div th:text="${board.hits}">조회수</div>
+				<div class="flex justify-between">
+					<div th:if="${#authentication.name}==${board.memberid}" class="mr-2">
+						<button class="px-2 py-1 bg-blue-400 rounded-md" th:onclick="|javascript:onupdate(${board.boardnum})|">
+							<span>수정</span>
+						</button>
+						<button class="px-2 py-1 bg-red-400 rounded-md" th:num="${board.boardnum}" th:onclick="ondelete( this.getAttribute('num') )">
+							<span>삭제</span>
+						</button>
+					</div>
+					<p>조회수 <span th:text="${board.hits}">조회수</span></p>
+				</div>
 			</div>
 		</div>
-		<pre th:text="${board.contents}"></pre>
+		<hr />
+		<pre class="mt-10" th:text="${board.contents}"></pre>
 	</div>
 </body>
 </html>

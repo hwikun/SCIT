@@ -1,6 +1,7 @@
 package net.softsociety.spring5.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import net.softsociety.spring5.domain.Board;
 
 public interface BoardService {
@@ -11,6 +12,10 @@ public interface BoardService {
 
   public Board getBoard(int boardnum);
 
-  public boolean hitsCountUp(Board b);
+  public Board readBoard(int boardnum);
+
+  public boolean deleteBoard(HashMap<String, Object> map);
+
+  public boolean updateBoard(Board b);
 
 }

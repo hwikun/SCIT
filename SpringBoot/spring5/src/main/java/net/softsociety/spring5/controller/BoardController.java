@@ -1,8 +1,7 @@
 package net.softsociety.spring5.controller;
 
 import java.util.ArrayList;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -52,21 +51,14 @@ public class BoardController {
     return "redirect:/board/list";
   }
 
-  @GetMapping("/read")
-  public String detail(@RequestParam(name = "num", defaultValue = "0") int boardnum, Model model,
-      HttpServletRequest req, HttpServletResponse res) {
+  @GetMapping("read")
+  public String detail(@RequestParam(name = "num", defaultValue = "0") int boardnum, Model model) {
     log.debug("boardnum: {}", boardnum);
     if (boardnum == 0) {
       return "redirect:/board/list";
     }
-    Board b = service.getBoard(boardnum);
+    Board b = service.readBoard(boardnum);
     if (b == null) {
-      return "redirect:/board/list";
-    }
-    b.setHits(b.getHits() + 1);
-    boolean result = service.hitsCountUp(b);
-    if (result == false) {
-      log.debug("조회수 업데이트 오류");
       return "redirect:/board/list";
     }
     model.addAttribute("board", b);
@@ -74,5 +66,34 @@ public class BoardController {
     return "boardView/detail";
   }
 
+  @GetMapping("delete")
+  public String delete(@RequestParam(name = "boardnum", defaultValue = "0") int boardnum,
+      @AuthenticationPrincipal UserDetails user) {
+    HashMap<String, Object> map = new HashMap<>();
+    map.put("user", user.getUsername());
+    map.put("boardnum", boardnum);
+    boolean result = service.deleteBoard(map);
+    if (result == false)
+      log.debug("삭제에 실패하였습니다");
+    return "redirect:/board/list";
+  }
 
+  @GetMapping("update")
+  public String update(@AuthenticationPrincipal UserDetails user,
+      @RequestParam(name = "boardnum", defaultValue = "0") int boardnum, Model model) {
+    Board b = service.getBoard(boardnum);
+    if (user.getUsername().equals(b.getMemberid())) {
+      model.addAttribute("oldData", b);
+      return "boardView/updateForm";
+    }
+    return "redirect:/board/list";
+  }
+
+  @PostMapping("update")
+  public String update(Board b) {
+    boolean result = service.updateBoard(b);
+    if (result == false)
+      log.debug("수정에 실패했습니다");
+    return "redirect:/board/list";
+  }
 }

@@ -1,6 +1,7 @@
 package net.softsociety.spring5.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import org.apache.ibatis.annotations.Mapper;
 import net.softsociety.spring5.domain.Board;
 
@@ -13,6 +14,10 @@ public interface BoardDAO {
 
   public Board getBoard(int boardnum);
 
-  public int hitsCountUp(Board b);
+  public int hitsCountUp(int boardnum);
+
+  public int deleteBoard(HashMap<String, Object> map);
+
+  public int updateBoard(Board b);
 
 }

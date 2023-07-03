@@ -18,7 +18,21 @@ values(spring5_board_seq.nextval, #{memberid}, #{title}, #{contents}, #{original
 select * from spring5_board where boardnum = #{boardnum}
 </select>
 
-<update id="hitsCountUp" parameterType="Board">
-update spring5_board set hits = #{hits} where boardnum = #{boardnum}
+<update id="hitsCountUp" parameterType="int">
+update spring5_board set hits = hits + 1 where boardnum = #{boardnum}
 </update>
+
+<delete id="deleteBoard" parameterType="map">
+delete from spring5_board where boardnum=#{boardnum} and memberid=#{user}
+</delete>
+
+<update id="updateBoard" parameterType="Board">
+update spring5_board
+<trim prefix="SET" suffixOverrides=",">
+	<if test="title != null and title != '' "> title = #{title}, </if>
+	<if test="contents != null and contents != '' "> contents = #{contents}, </if>
+</trim>
+where boardnum = #{boardnum}
+</update>
+
 </mapper>
