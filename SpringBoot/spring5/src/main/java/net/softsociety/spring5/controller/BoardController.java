@@ -3,6 +3,7 @@ package net.softsociety.spring5.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -11,9 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.spring5.domain.Board;
 import net.softsociety.spring5.service.BoardService;
+import net.softsociety.spring5.util.FileService;
 
 @Controller
 @Slf4j
@@ -21,7 +24,10 @@ import net.softsociety.spring5.service.BoardService;
 public class BoardController {
 
   @Autowired
-  BoardService service;
+  private BoardService service;
+
+  @Value("${spring.servlet.multipart.location}")
+  String uploadPath = "~/desktop";
 
   @GetMapping("list")
   public String list(Model model) {
@@ -38,12 +44,21 @@ public class BoardController {
   }
 
   @PostMapping("write")
-  public String write(@AuthenticationPrincipal UserDetails user, Board b) {
-    log.debug("input board: {}", b);
-    log.debug("user: {}", user);
+  public String write(@AuthenticationPrincipal UserDetails user, Board b, MultipartFile upload) {
 
     b.setMemberid(user.getUsername());
-    log.debug("post data: {}", b);
+
+    if (upload != null && !upload.isEmpty()) {
+      log.debug("file contenttype: {}", upload.getContentType());
+      log.debug("file originalname: {}", upload.getOriginalFilename());
+      log.debug("file size: {}", upload.getSize());
+      String savedfile = FileService.saveFile(upload, uploadPath);
+      b.setOriginalfile(upload.getOriginalFilename());
+      b.setSavedfile(savedfile);
+    }
+
+    log.debug("input board: {}", b);
+    log.debug("user: {}", user);
 
     boolean result = service.writeBoard(b);
     if (result == false)

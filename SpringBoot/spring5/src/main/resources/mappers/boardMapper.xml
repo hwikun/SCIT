@@ -10,8 +10,26 @@ select boardnum, memberid, title, contents, hits, to_char(inputdate, 'yy/mm/dd')
 
 <insert id="writeBoard" parameterType="Board">
 insert into 
-	spring5_board(boardnum, memberid, title, contents, originalfile)
-values(spring5_board_seq.nextval, #{memberid}, #{title}, #{contents}, #{originalfile})
+	spring5_board(
+		boardnum
+		, memberid
+		, title
+		, contents
+		<if test="originalfile != null and savedfile != null">
+		, originalfile
+		, savedfile
+		</if>
+	)
+values(
+	spring5_board_seq.nextval, 
+		#{memberid}
+		, #{title}
+		, #{contents}
+		<if test="originalfile != null and savedfile != null">
+		, #{originalfile}
+		, #{savedfile}
+		</if>
+	)
 </insert>
 
 <select id="getBoard" parameterType="int" resultType="Board">
