@@ -7,14 +7,14 @@
 </head>
 <body>
 	<h1 class="text-center text-4xl mb-10">게시글 수정</h1>
-	<form th:action="@{/board/update}" method="post" class="w-3/5 my-0 mx-auto">
+	<form th:action="@{/board/update}" method="post" enctype="multipart/form-data" class="w-3/5 my-0 mx-auto">
 		<div class="grid grid-cols-5 bg-gray-200 gap-1 p-10">
 			<div class="place-self-center">제목</div>
 			<div class="col-span-4 w-full p-2"><input type="text" name="title" required class="w-full rounded-md"  th:value="${oldData.title}"/></div>
 			<div class="place-self-center">내용</div>
 			<div class="col-span-4 p-2"><textarea name="contents" id="" cols="40" rows="10" class="rounded-md w-full"  th:text="${oldData.contents}"></textarea></div>
 			<div class="place-self-center">파일</div>
-			<div class="col-span-4 p-2"><input type="file" name="originalfile"/></div>
+			<div class="col-span-4 p-2"><input type="file" name="upload"/></div>
 			<input type="hidden" th:value="${oldData.boardnum}" name="boardnum" />
 			<input type="submit" value="수정" class="col-span-5 place-self-center rounded-md px-2 py-1 bg-blue-400"/>
 		</div>

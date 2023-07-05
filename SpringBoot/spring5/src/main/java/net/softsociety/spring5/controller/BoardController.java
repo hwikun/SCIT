@@ -1,13 +1,20 @@
 package net.softsociety.spring5.controller;
 
+import java.io.FileInputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +34,7 @@ public class BoardController {
   private BoardService service;
 
   @Value("${spring.servlet.multipart.location}")
-  String uploadPath = "~/desktop";
+  String uploadPath;
 
   @GetMapping("list")
   public String list(Model model) {
@@ -105,10 +112,48 @@ public class BoardController {
   }
 
   @PostMapping("update")
-  public String update(Board b) {
+  public String update(Board b, MultipartFile upload) {
+    if (upload != null && !upload.isEmpty()) {
+      if(service.getBoard(b.getBoardnum()).getOriginalfile() != null) {
+        FileService.deleteFile(uploadPath + "/" + b.getSavedfile());
+      }
+      String savedfile = FileService.saveFile(upload, uploadPath);
+      b.setOriginalfile(upload.getOriginalFilename());
+      b.setSavedfile(savedfile);
+    }
     boolean result = service.updateBoard(b);
     if (result == false)
       log.debug("수정에 실패했습니다");
     return "redirect:/board/list";
   }
+
+  @GetMapping("download")
+  public void download(@RequestParam(name = "boardnum", defaultValue = "0") int boardnum,
+      HttpServletRequest req, HttpServletResponse res) {
+    // 해당 글의 첨부파일이름 확인
+    Board b = service.getBoard(boardnum);
+    String fullPath = uploadPath + "/" + b.getSavedfile(); // 실제 저장된 이름으로 불러오기!
+
+    // 파일의 경로를 이용해서 FileInputStream 객체를 생성;
+
+    // res를 통해 파일 전송
+    try {
+      res.setHeader("Content-Disposition",
+          " attachment;filename=" + URLEncoder.encode(b.getOriginalfile(), "UTF-8"));
+    } catch (UnsupportedEncodingException e) {
+      e.printStackTrace();
+    }
+
+    try {
+      FileInputStream in = new FileInputStream(fullPath);
+      ServletOutputStream out = res.getOutputStream();
+      FileCopyUtils.copy(in, out);
+      in.close();
+      out.close();
+    } catch (Exception e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
+
 }

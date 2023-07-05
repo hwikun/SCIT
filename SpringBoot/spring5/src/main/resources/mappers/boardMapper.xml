@@ -49,6 +49,8 @@ update spring5_board
 <trim prefix="SET" suffixOverrides=",">
 	<if test="title != null and title != '' "> title = #{title}, </if>
 	<if test="contents != null and contents != '' "> contents = #{contents}, </if>
+	<if test="originalfile != null and originalfile != '' "> originalfile = #{originalfile}, </if>
+	<if test="savedfile != null and savedfile != '' "> savedfile = #{savedfile}, </if>
 </trim>
 where boardnum = #{boardnum}
 </update>

@@ -2,11 +2,14 @@ package net.softsociety.spring5.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import net.softsociety.spring5.dao.BoardDAO;
 import net.softsociety.spring5.domain.Board;
+import net.softsociety.spring5.util.FileService;
 
 @Service
 @Transactional
@@ -15,9 +18,13 @@ public class BoardServiceImpl implements BoardService {
   @Autowired
   BoardDAO dao;
 
+  @Value("${spring.servlet.multipart.location}")
+  String uploadPath;
+
   @Override
   public ArrayList<Board> getList() {
-    ArrayList<Board> list = dao.getList();
+    RowBounds rb = new RowBounds(30, 10);
+    ArrayList<Board> list = dao.getList(rb);
     return list;
   }
 
@@ -45,6 +52,8 @@ public class BoardServiceImpl implements BoardService {
 
   @Override
   public boolean deleteBoard(HashMap<String, Object> map) {
+    Board b = this.getBoard((int) (map.get("boardnum")));
+    FileService.deleteFile(uploadPath + "/" + b.getSavedfile());
     int n = dao.deleteBoard(map);
     return n != 0;
 
