@@ -3,6 +3,7 @@ package net.softsociety.spring5.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import net.softsociety.spring5.domain.Board;
+import net.softsociety.spring5.util.PageNavigator;
 
 public interface BoardService {
 
@@ -17,5 +18,10 @@ public interface BoardService {
   public boolean deleteBoard(HashMap<String, Object> map);
 
   public boolean updateBoard(Board b);
+
+  public ArrayList<Board> getList(PageNavigator navi, String type, String searchWord);
+
+  public PageNavigator getPageNavigator(int pagePerGroup, int countPerPage, int page, String type,
+      String searchWord);
 
 }

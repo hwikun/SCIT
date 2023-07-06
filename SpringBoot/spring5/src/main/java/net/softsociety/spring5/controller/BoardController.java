@@ -24,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.softsociety.spring5.domain.Board;
 import net.softsociety.spring5.service.BoardService;
 import net.softsociety.spring5.util.FileService;
+import net.softsociety.spring5.util.PageNavigator;
 
 @Controller
 @Slf4j
@@ -36,9 +37,25 @@ public class BoardController {
   @Value("${spring.servlet.multipart.location}")
   String uploadPath;
 
+  // 게시판 목록의 페이지당 글 개수;
+  @Value("${user.board.page}")
+  int countPerPage;
+
+  // 게시판 목록의 페이지 이동 링크 개수;
+  @Value("${user.board.group}")
+  int pagePerGroup;
+
   @GetMapping("list")
-  public String list(Model model) {
-    ArrayList<Board> list = service.getList();
+  public String list(Model model, String type, String searchWord,
+      @RequestParam(name = "page", defaultValue = "1") int page) {
+    log.debug("검색대상: {}, 검색어: {}", type, searchWord);
+
+    PageNavigator navi =
+        service.getPageNavigator(pagePerGroup, countPerPage, page, type, searchWord);
+
+
+
+    ArrayList<Board> list = service.getList(navi, type, searchWord);
     model.addAttribute("list", list);
 
     return "boardView/list";
@@ -114,7 +131,7 @@ public class BoardController {
   @PostMapping("update")
   public String update(Board b, MultipartFile upload) {
     if (upload != null && !upload.isEmpty()) {
-      if(service.getBoard(b.getBoardnum()).getOriginalfile() != null) {
+      if (service.getBoard(b.getBoardnum()).getOriginalfile() != null) {
         FileService.deleteFile(uploadPath + "/" + b.getSavedfile());
       }
       String savedfile = FileService.saveFile(upload, uploadPath);

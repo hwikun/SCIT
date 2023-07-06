@@ -23,4 +23,9 @@ public interface BoardDAO {
 
   public ArrayList<Board> getList(RowBounds rb);
 
+  public ArrayList<Board> searchBoards(RowBounds rb, HashMap<String, String> map);
+
+  public int getTotal(HashMap<String, String> map);
+
+
 }

@@ -55,4 +55,51 @@ update spring5_board
 where boardnum = #{boardnum}
 </update>
 
+<select id="searchBoards" parameterType="hashmap" resultType="Board">
+select 
+	boardnum
+	, memberid
+	, title
+	, to_char(inputdate, 'YYYY-MM-DD') inputdate
+	, hits
+from
+	spring5_board
+<where>
+	<if test="type == 'title'">
+		upper(title) like upper('%' || #{searchWord} || '%')
+	</if>
+	<if test="type == 'contents'">
+		upper(contents) like upper('%' || #{searchWord} || '%')
+	</if>
+	<if test="type == 'memberid'">
+		upper(memberid) like upper('%' || #{searchWord} || '%')
+	</if>
+	<if test="type == 'all'">
+		upper(title) like upper('%' || #{searchWord} || '%')
+		or upper(contents) like upper('%' || #{searchWord} || '%')
+		or upper(memberid) like upper('%' || #{searchWord} || '%')
+	</if>
+</where>
+order by boardnum desc
+</select>
+
+<select id="getTotal" parameterType="hashmap" resultType="int">
+select count(*) from spring5_board
+<where>
+	<if test="type == 'title'">
+		upper(title) like upper('%' || #{searchWord} || '%')
+	</if>
+	<if test="type == 'contents'">
+		upper(contents) like upper('%' || #{searchWord} || '%')
+	</if>
+	<if test="type == 'memberid'">
+		upper(memberid) like upper('%' || #{searchWord} || '%')
+	</if>
+	<if test="type == 'all'">
+		upper(title) like upper('%' || #{searchWord} || '%')
+		or upper(contents) like upper('%' || #{searchWord} || '%')
+		or upper(memberid) like upper('%' || #{searchWord} || '%')
+	</if>
+</where>
+</select>
 </mapper>

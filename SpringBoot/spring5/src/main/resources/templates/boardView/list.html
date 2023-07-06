@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <title>글 목록</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<script>
+function pagingFormSubmit() {
+	const form = document.getElementById('pagingForm')
+	form.submit();
+}
+</script>
 </head>
 <body class="px-24">
 	<h1>[ 글 목록 ]</h1>
@@ -29,5 +35,18 @@
 			</a>
 		</div>
 	</div>
+	<footer class="flex w-full justify-center my-10">
+		<form th:action="@{/board/list}" method="get" id="pagingForm" class="">
+			<select name="type" id="type">
+				<option value="all">전체</option>
+				<option value="title">제목</option>
+				<option value="contents">본문</option>
+				<option value="memberid">작성자</option>
+			</select>
+			<input type="text" name="searchWord" class="bg-gray-100 rounded-md py-1" />
+			<input type="button" value="검색" onclick="pagingFormSubmit()" class="py-1 px-2 bg-gray-200 rounded-md"/>
+		</form>
+		
+	</footer>
 </body>
 </html>

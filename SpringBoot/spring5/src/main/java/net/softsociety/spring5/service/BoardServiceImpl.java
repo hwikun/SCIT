@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import net.softsociety.spring5.dao.BoardDAO;
 import net.softsociety.spring5.domain.Board;
 import net.softsociety.spring5.util.FileService;
+import net.softsociety.spring5.util.PageNavigator;
 
 @Service
 @Transactional
@@ -23,7 +24,7 @@ public class BoardServiceImpl implements BoardService {
 
   @Override
   public ArrayList<Board> getList() {
-    RowBounds rb = new RowBounds(30, 10);
+    RowBounds rb = new RowBounds(0, 200);
     ArrayList<Board> list = dao.getList(rb);
     return list;
   }
@@ -63,6 +64,31 @@ public class BoardServiceImpl implements BoardService {
   public boolean updateBoard(Board b) {
     int n = dao.updateBoard(b);
     return n != 0;
+  }
+
+  @Override
+  public ArrayList<Board> getList(PageNavigator navi, String type, String searchWord) {
+    HashMap<String, String> map = new HashMap<>();
+    map.put("type", type);
+    map.put("searchWord", searchWord);
+    RowBounds rb = new RowBounds(navi.getStartRecord(), navi.getCountPerPage());
+    ArrayList<Board> boardlist = dao.searchBoards(rb, map);
+    return boardlist;
+  }
+
+  @Override
+  public PageNavigator getPageNavigator(int pagePerGroup, int countPerPage, int page, String type,
+      String searchWord) {
+    // 검색할 내용
+    HashMap<String, String> map = new HashMap<>();
+    map.put("type", type);
+    map.put("searchWord", searchWord);
+
+    int total = dao.getTotal(map);
+
+    PageNavigator navi = new PageNavigator(pagePerGroup, countPerPage, page, total);
+
+    return navi;
   }
 
 
