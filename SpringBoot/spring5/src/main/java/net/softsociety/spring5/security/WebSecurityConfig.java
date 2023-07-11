@@ -22,9 +22,12 @@ public class WebSecurityConfig {
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http.csrf().disable().authorizeRequests()
-        .antMatchers("/", "/image/**", "/css/**", "/js/**", "/member/join", "/member/checkid")
+        .antMatchers("/", "/image/**", "/css/**", "/js/**", "/member/join", "/member/checkid",
+            "/thymeleaf", "/error")
         .permitAll() // 설정한 리소스의 접근을 인증절차 없이 허용
-        .anyRequest().authenticated() // 위의 경로 외에는 모두 로그인을 해야 함
+        .antMatchers("/admin", "/admin/members", "/admin/reply", "/admin/board") // 설정한 리소스의 접근을
+                                                                                 // 관리자만 허용
+        .hasRole("ADMIN").anyRequest().authenticated() // 위의 경로 외에는 모두 로그인을 해야 함
         .and().formLogin() // 일반적인 폼을 이용한 로그인 처리/실패 방법을 사용
         .loginPage("/member/loginForm") // 시큐리티에서 제공하는 기본 폼이 아닌 사용자가 만든 폼 사용
         .loginProcessingUrl("/member/login").permitAll() // 인증 처리를 하는 URL을 설정. 로그인 폼의 action으로 지정

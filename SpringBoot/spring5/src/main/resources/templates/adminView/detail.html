@@ -41,7 +41,7 @@
 					<p>작성일 <span th:text="${board.inputdate}"></span></p>
 				</div>
 				<div class="flex justify-between">
-					<div th:if="${#authentication.name}==${board.memberid}" class="mr-2">
+					<div class="mr-2">
 						<button class="px-2 py-1 bg-blue-400 rounded-md" th:onclick="|javascript:onupdate(${board.boardnum})|">
 							<span>수정</span>
 						</button>

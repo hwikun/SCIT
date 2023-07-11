@@ -102,4 +102,37 @@ select count(*) from spring5_board
 	</if>
 </where>
 </select>
+
+<insert id="createReply" parameterType="Reply">
+insert into spring5_reply(
+		replynum
+		, boardnum
+		, memberid
+		, replytext
+	)
+values (
+		spring5_reply_seq.nextval
+		, #{boardnum}
+		, #{memberid}
+		, #{replytext}
+	)
+</insert>
+
+<select id="readAllReply" parameterType="int" resultType="Reply">
+select
+	replynum
+	, boardnum
+	, memberid
+	, replytext
+	, to_char(createdat, 'YYYY/MM/DD HH24:MI') createdat
+from 
+	spring5_reply
+where
+	boardnum = #{boardnum}
+</select>
+
+<delete id="deleteReply" parameterType="Reply">
+delete from spring5_reply where replynum = #{replynum} and boardnum = #{boardnum}
+</delete>
+
 </mapper>

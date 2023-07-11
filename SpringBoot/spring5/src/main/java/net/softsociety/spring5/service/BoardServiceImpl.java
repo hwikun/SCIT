@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import net.softsociety.spring5.dao.BoardDAO;
 import net.softsociety.spring5.domain.Board;
+import net.softsociety.spring5.domain.Reply;
 import net.softsociety.spring5.util.FileService;
 import net.softsociety.spring5.util.PageNavigator;
 
@@ -89,6 +90,23 @@ public class BoardServiceImpl implements BoardService {
     PageNavigator navi = new PageNavigator(pagePerGroup, countPerPage, page, total);
 
     return navi;
+  }
+
+  @Override
+  public void createReply(Reply reply) {
+    int n = dao.createReply(reply);
+  }
+
+  @Override
+  public ArrayList<Reply> readallReply(int boardnum) {
+    ArrayList<Reply> reply = dao.readAllReply(boardnum);
+    return reply;
+  }
+
+  @Override
+  public void deleteReply(Reply reply) {
+    int n = dao.deleteReply(reply);
+
   }
 
 

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 import net.softsociety.spring5.domain.Board;
+import net.softsociety.spring5.domain.Reply;
 
 @Mapper
 public interface BoardDAO {
@@ -26,6 +27,12 @@ public interface BoardDAO {
   public ArrayList<Board> searchBoards(RowBounds rb, HashMap<String, String> map);
 
   public int getTotal(HashMap<String, String> map);
+
+  public int createReply(Reply reply);
+
+  public ArrayList<Reply> readAllReply(int boardnum);
+
+  public int deleteReply(Reply reply);
 
 
 }

@@ -12,10 +12,22 @@
 		<span th:text="${#authentication.name}"></span>님 로그인중
 	</p>
 	
-	<p><a th:href="@{/member/join}">회원가입</a></p>
-	<p><a th:href="@{/member/loginForm}">로그인</a></p>
-	<p><a th:href="@{/member/logout}">로그아웃</a></p>
-	<p><a th:href="@{/member/updateForm}">개인정보수정</a></p>
-	<p><a th:href="@{/board/list}">게시판</a></p>
+	<p sec:authorize="not isAuthenticated()"><a th:href="@{/member/join}">회원가입</a></p>
+	<p sec:authorize="not isAuthenticated()"><a th:href="@{/member/loginForm}">로그인</a></p>
+	<p sec:authorize="isAuthenticated()"><a th:href="@{/member/logout}">로그아웃</a></p>
+	<p sec:authorize="isAuthenticated()"><a th:href="@{/member/updateForm}">개인정보수정</a></p>
+	<p sec:authorize="isAuthenticated()"><a th:href="@{/board/list}">게시판</a></p>
+	
+	
+	<a th:href="@{/thymeleaf}">
+		<p>Thymeleaf (Security)</p>
+	</a>
+	<a th:href="@{/admin}">
+		<p>관리자 페이지</p>	
+	</a>
+	<a th:href="@{/error}">
+		<p>에러 처리</p>
+	</a>
+	
 </body>
 </html>

@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.spring5.domain.Board;
+import net.softsociety.spring5.domain.Reply;
 import net.softsociety.spring5.service.BoardService;
 import net.softsociety.spring5.util.FileService;
 import net.softsociety.spring5.util.PageNavigator;
@@ -52,8 +53,6 @@ public class BoardController {
 
     PageNavigator navi =
         service.getPageNavigator(pagePerGroup, countPerPage, page, type, searchWord);
-
-
 
     ArrayList<Board> list = service.getList(navi, type, searchWord);
     model.addAttribute("list", list);
@@ -100,7 +99,11 @@ public class BoardController {
     if (b == null) {
       return "redirect:/board/list";
     }
+    ArrayList<Reply> reply = service.readallReply(boardnum);
+    if (reply == null)
+      return "redirect:/board/list";
     model.addAttribute("board", b);
+    model.addAttribute("replies", reply);
 
     return "boardView/detail";
   }
@@ -171,6 +174,20 @@ public class BoardController {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
+  }
+
+  @PostMapping("writeReply")
+  public String writeReply(Reply reply, @AuthenticationPrincipal UserDetails user) {
+    reply.setMemberid(user.getUsername());
+    log.debug("reply: {}", reply);
+    service.createReply(reply);
+    return "redirect:/board/read?num=" + reply.getBoardnum();
+  }
+
+  @PostMapping("deleteReply")
+  public String deleteReply(Reply reply) {
+    service.deleteReply(reply);
+    return "redirect:/board/read?num=" + reply.getBoardnum();
   }
 
 }

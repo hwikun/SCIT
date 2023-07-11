@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>게시물 관리</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="px-24 my-10">
+	<h1 class="text-center text-4xl my-10">게시물 관리</h1>
+	<form th:action="@{/admin/board}" method="post">
+		<div class="flex justify-end mb-2">
+			<input type="button" name="deleteSelect" class="text-xl bg-red-400 py-1 px-2 rounded-md text-white" value="삭제">
+		</div>
+		<div class="grid grid-cols-1">
+			<div class="grid grid-cols-7 gap-x-1">
+				<div class="p-2 bg-gray-200 flex justify-center">선택</div>
+				<div class="p-2 bg-gray-200 flex justify-center">번호</div>
+				<div class="p-2 col-span-2 bg-gray-200">제목</div>
+				<div class="p-2 bg-gray-200 flex justify-center">작성자</div>
+				<div class="p-2 bg-gray-200 flex justify-center">조회수</div>
+				<div class="p-2 bg-gray-200 flex justify-center">작성일</div>
+			</div>
+			<div th:each="item : ${list}">
+				<a th:href="@{/admin/board/read(num=${item.boardnum})}" class="grid grid-cols-7 gap-x-1 mb-1">
+					<th:block>
+						<div class="p-2 bg-orange-100 flex justify-center"><input type="checkbox" name="select" th:value="${item.boardnum}" /></div>
+						<div class="p-2 bg-orange-100 flex justify-center" th:text="${item.boardnum}"></div>
+						<div class="p-2 bg-orange-100 col-span-2" th:text="${item.title}"></div>
+						<div class="p-2 bg-orange-100 flex justify-center" th:text="${item.memberid}"></div>
+						<div class="p-2 bg-orange-100 flex justify-center" th:text="${item.hits}"></div>
+						<div class="p-2 bg-orange-100 flex justify-center" th:text="${item.inputdate}"></div>
+					</th:block>
+				</a>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

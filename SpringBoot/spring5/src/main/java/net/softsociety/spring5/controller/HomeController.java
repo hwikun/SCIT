@@ -10,4 +10,19 @@ public class HomeController {
   public String home() {
     return "home";
   }
+
+  @GetMapping("thymeleaf")
+  public String thymeleaf() {
+    return "thymeleaf";
+  }
+
+  @GetMapping("admin")
+  public String admin() {
+    return "admin";
+  }
+
+  @GetMapping("error")
+  public String error() {
+    return "error";
+  }
 }

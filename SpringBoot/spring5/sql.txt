@@ -34,3 +34,16 @@ create table spring5_board (
 create sequence spring5_board_seq;
 
 -- 글저장 예
+
+-- 댓글
+create table spring5_reply (
+	replynum 	number 			primary key, -- 댓글번호 
+	boardnum 	number 			references spring5_board(boardnum) on delete cascade, -- 본문 글번호;
+	memberid 	varchar2(20) 	references spring5_member(memberid), -- 작성자 아이디;
+	replytext 	varchar2(1000) 	not null, -- 내용;
+	createdat 	date 			default sysdate -- 글쓴 시간;
+	-- 
+);
+
+-- 댓글시퀀스 
+create sequence spring5_reply_seq;
