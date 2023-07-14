@@ -61,9 +61,10 @@
 			</div>
 		</div>
 		<hr />
-		<pre class="mt-10" th:text="${board.contents}"></pre>
+		<pre class="my-10" th:text="${board.contents}"></pre>
+		<hr />
 	</div>
-	<form th:action="@{/board/writeReply}" method="post" onsubmit="return onSumbitReply()">
+	<form th:unless="${#authorization.expression('hasRole(''ADMIN'')')}" th:action="@{/admin/board/writeReply}" method="post" onsubmit="return onSumbitReply()">
 		<input type="hidden" name="boardnum" th:value="${board.boardnum}" />
 		<input type="text" name="replytext" id="replytext" class="bg-gray-200 rounded-md px-2 py-1" placeholder="댓글을 작성해 주세요" />
 		<input type="submit" value="등록" class="px-2 py-1 bg-blue-400 rounded-md text-center text-white" />
@@ -76,10 +77,11 @@
 		</form>
 		<th:block th:each="reply : ${replies}">
 			<div class="grid grid-cols-7 w-full gap-2" th:id="${reply.replynum}">
+				<button></button>
 				<div th:text="${reply.memberid}">작성자</div>
 				<div th:text="${reply.replytext}" class="col-span-4">내용</div>
 				<div th:text="${reply.createdat}" class="place-self-center">작성일</div>
-				<button th:if="${#authentication.name} == ${reply.memberid}" th:onclick="|javascript:return deleteReply(${reply.replynum})|" class="place-self-center">❌</button>
+				<button sec:authorize="hasRole('ADMIN')" th:onclick="|javascript:return deleteReply(${reply.replynum})|" class="place-self-center">❌</button>
 			</div>
 		</th:block>
 	</div>

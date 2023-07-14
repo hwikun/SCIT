@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js1</title>
+<script>
+
+function test1() {
+	const input = document.getElementById('text');
+	console.log('test1: ' + input);
+	
+}
+let num1 = 1;
+function test2() {
+	let num2 = 1;
+	num1++;
+	num2++;
+	console.log(num1, num2);
+}
+
+function test3() {
+	console.log(a);
+	
+	var a = 1;
+	let b = 2;
+	const c = 3;
+	console.log(a,b,c);
+	
+	var a = 'abc';
+	console.log(a);
+	
+//	let b = 'abc'; // 중복선언 불가
+	b = 123;
+	console.log(b);
+	
+	// c = 123; // 중복선언 불가, 값 변경 불가
+	
+	//a타입, a 가 숫자인지, a가 null 인지
+	console.log(typeof a); 
+	console.log(isNaN(a));
+	console.log(a == null);
+	
+}
+
+function test4() {
+	let a = 10;
+	let b = 20;
+	let c = plus(a,b);
+	console.log(c);
+}
+
+function plus(x,y,z) {
+	console.log(z);
+	console.log(z == undefined);
+	
+	let res = x+y;
+	return res;
+}
+
+
+
+</script>
+</head>
+<body>
+	<h1>[ JavaScript 1 - 변수, 함수 ]</h1>
+	<p><a href="javascript:test1()">현재 페이지의 객체에 접근</a></p>
+	<p><input type="text" id="text" value="입력란" /></p>
+	<p id="text2">p태그 내의 글자</p>
+	
+	<p><a href="javascript:test2()">지역변수와 전역변수</a></p>
+	<p><a href="javascript:test3()">var, let, const</a></p>
+	<p><a href="javascript:test4()">함수</a></p>
+</body>
+</html>

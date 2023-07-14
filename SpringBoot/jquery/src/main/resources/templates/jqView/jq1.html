@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>JQuery</title>
+<script th:src="@{/js/jquery-3.7.0.js}"></script> <!-- jquery 불러오기 -->
+<script>
+
+$(document).ready(function() {
+	$("*").css("background-color", "black"); // 전체선택자
+	$("*").css("color", "white"); // 전체선택자
+	$("h2").css("color", "red"); // 태그선택자
+	$("#text1").css("color", "blue"); // 아이디 선택자
+	$(".text2").css("color", "green"); // 클래스 선택자
+	$(".text3").css("background-color", "pink"); 
+	$("div>p").css("color", "lime"); // 종속 선택자
+	$("h1, div").css("background-color", "gray");
+	$("h2.text2").css("background-color", "yellow");
+	$('div p').css("color", "brown"); // 후손.자식 요소중 어디있던지.
+	// $('div > p').css("color", "brown"); 자손.바로 아래만.
+	
+	
+}); // ready(); 제일 먼저 실행해줌;
+
+
+</script>
+</head>
+<body>
+	<h1>[ jQuery 기본문법, 선택자 ]</h1>
+	<h2 class="text2">h2태그를 이용한 문자열</h2>
+	<h2>h2태그를 이용한 문자열</h2>
+	<p>p태그를 이용한 문자열</p>
+	<p>p태그를 이용한 문자열</p>
+	<p id="text1">p태그를 이용한 문자열</p>
+	<p class="text2">p태그를 이용한 문자열</p>
+	<p class="text2 text3">p태그를 이용한 문자열</p>
+	
+	<div>
+		<p>p태그를 이용한 문자열</p>
+		<p>p태그를 이용한 문자열</p>
+	</div>
+	<div>
+		<table>
+			<tr>
+				<td>
+					<p>p태그를 이용한 문자열</p>
+				</td>
+				<td>
+					<p>p태그를 이용한 문자열</p>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

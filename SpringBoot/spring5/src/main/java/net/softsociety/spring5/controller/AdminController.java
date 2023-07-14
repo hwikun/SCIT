@@ -59,7 +59,7 @@ public class AdminController {
     model.addAttribute("board", b);
     model.addAttribute("replies", reply);
 
-    return "adminView/detail";
+    return "boardView/detail";
   }
 
   @GetMapping("reply")

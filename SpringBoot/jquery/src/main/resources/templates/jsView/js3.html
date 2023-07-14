@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>javascript</title>
+<script>
+
+let a = null;
+function output() {
+	console.log('output() 함수 실행');
+}
+function test1() {
+	setTimeout(output, 3000);
+}
+function test2() {
+	a = setInterval(output, 5000);
+}
+let count = null;
+let num = 6;
+function test3() {	// 1초씩 카운트
+	count = setInterval(function (){
+		let output = document.getElementById('timer');
+		output.innerHTML = --num;
+		
+		if (num == 0) {
+			clearInterval(count);
+			output.innerHTML = '';
+			location.href='https://www.naver.com';
+		}
+	}, 1000);
+}
+
+
+</script>
+</head>
+<body>
+	<h1>setInterval, setTimeout</h1>
+	
+	<p><a href="javascript:test1()">setTimeout</a></p>
+	<p><a href="javascript:test2()">setInterval</a></p>
+	<p><a href="javascript:test3()">go to naver</a></p>
+	
+	<h1 id="timer"></h1>
+	
+</body>
+</html>

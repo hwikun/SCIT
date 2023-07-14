@@ -5,6 +5,30 @@
 <meta charset="UTF-8">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
+	function updateReply(event) {
+		let target = document.getElementById('reply'+ event);
+		let button = document.getElementById('replyupdateBtn' + event);
+		console.log(target);
+		console.log(button);
+		const newTag = '<input type="text" name="replytext" class="col-span-4 bg-gray-200 rounded-md px-2 py-1" value="'+ target.innerText + '" />';
+		const newBtn = '<button id="replyupdateBtn'+event+'" onclick="return sendUpdate('+event+')" class="place-self-center">✏️</button>'
+		target.insertAdjacentHTML('beforebegin', newTag);
+		button.insertAdjacentHTML('beforebegin', newBtn);
+		target.remove();
+		button.remove();
+	}
+	function sendUpdate(replynum) {
+		let target = document.getElementById('reply'+ replynum);
+		let button = document.getElementById('replyupdateBtn' + replynum);
+		console.log("target: ", target);
+		console.log("button: ", button);
+		const newTag = '<div class="col-span-4" id="reply'+replynum+'">'+target.value+'</div>';
+		const newBtn = '<button id="replyupdateBtn'+replynum+'" onclick="return sendUpdate('+replynum+')" class="place-self-center">✏️</button>'
+		target.insertAdjacentHTML('beforebegin', newTag);
+		button.insertAdjacentHTML('beforebegin', newBtn);
+		target.remove();
+		button.remove();
+	}
 	function ondelete(num){
 		if(window.confirm("정말로 삭제하시겠습니까?")){
 			location.href = "delete?boardnum=" + num;
@@ -41,7 +65,7 @@
 					<p>작성일 <span th:text="${board.inputdate}"></span></p>
 				</div>
 				<div class="flex justify-between">
-					<div th:if="${#authentication.name}==${board.memberid}" class="mr-2">
+					<div th:if="${#authentication.name == board.memberid or #authorization.expression('hasRole(''ADMIN'')')}" class="mr-2">
 						<button class="px-2 py-1 bg-blue-400 rounded-md" th:onclick="|javascript:onupdate(${board.boardnum})|">
 							<span>수정</span>
 						</button>
@@ -63,7 +87,7 @@
 		<hr />
 		<pre class="mt-10" th:text="${board.contents}"></pre>
 	</div>
-	<form th:action="@{/board/writeReply}" method="post" onsubmit="return onSumbitReply()">
+	<form th:unless="${#authorization.expression('hasRole(''ADMIN'')')}" th:action="@{/board/writeReply}" method="post" onsubmit="return onSumbitReply()">
 		<input type="hidden" name="boardnum" th:value="${board.boardnum}" />
 		<input type="text" name="replytext" id="replytext" class="bg-gray-200 rounded-md px-2 py-1" placeholder="댓글을 작성해 주세요" />
 		<input type="submit" value="등록" class="px-2 py-1 bg-blue-400 rounded-md text-center text-white" />
@@ -74,12 +98,18 @@
 			<input type="hidden" name="replynum" id="delete_replynum" value="0" />
 			<input type="hidden" name="boardnum" id="delete_boardnum" th:value="${board.boardnum}"/>
 		</form>
+		<form th:action="@{/board/updateReply}" method="post" id="update_replyForm">
+			<input type="hidden" name="replynum" id="update_replynum" value="0" />
+			<input type="hidden" name="boardnum" id="update_boardnum" th:value="${board.boardnum}"/>
+			<input type="text" name="replytext" id="update_replytext" />
+		</form>
 		<th:block th:each="reply : ${replies}">
-			<div class="grid grid-cols-7 w-full gap-2" th:id="${reply.replynum}">
+			<div class="grid grid-cols-8 w-full gap-2">
 				<div th:text="${reply.memberid}">작성자</div>
-				<div th:text="${reply.replytext}" class="col-span-4">내용</div>
+				<div th:text="${reply.replytext}" class="col-span-4" th:id="|reply${reply.replynum}|">내용</div>
 				<div th:text="${reply.createdat}" class="place-self-center">작성일</div>
-				<button th:if="${#authentication.name} == ${reply.memberid}" th:onclick="|javascript:return deleteReply(${reply.replynum})|" class="place-self-center">❌</button>
+				<button th:if="${#authentication.name == reply.memberid or #authorization.expression('hasRole(''ADMIN'')')}" th:onclick="|javascript:return deleteReply(${reply.replynum})|" class="place-self-center">❌</button>
+				<button th:id="|replyupdateBtn${reply.replynum}|" th:if="${#authentication.name == reply.memberid}" th:onclick="|javascript:return updateReply(${reply.replynum})|" class="place-self-center">✏️</button>
 			</div>
 		</th:block>
 	</div>

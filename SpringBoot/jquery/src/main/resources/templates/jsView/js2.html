@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>javascript</title>
+<script>
+
+let w = null, y = null;
+function test1() {
+	w = window.open('js1', 'window1', 'top=300, left=500,width=500,height=500');
+}
+function test2() {
+	y = window.open('https://classroom.google.com/c/NTk2NDQzMzY1ODE4', 'window2', 'top=320, left=520,width=500,height=500');
+}
+function test3() {
+	w.close();
+}
+function test4() {
+	w = window.open('js1', 'window1', 'top=0,left=' + screen.width + ',width='+ screen.width/2 +',height='+screen.height/2);
+}
+function test5() {
+	w = window.open('https://m.naver.com', 'window1', 'top=0,left=' + screen.width + ',width='+ screen.width/2 +',height='+screen.height/2);
+}
+
+</script>
+</head>
+<body>
+	<h1>[ Javascript 객체 ]</h1>
+	<p><a href="javascript:test1()">브라우저 객체모델</a></p>
+	<p><a href="javascript:test2()">새창 열기</a></p>
+	<p><a href="javascript:test3()">창 닫기</a></p>
+	<p><a href="javascript:test4()">창 열기 -> 화면 오른쪽 위에 가로세로 반크기로</a></p>
+	<p><a href="javascript:test5()">네이버로 이동</a></p>
+</body>
+</html>
