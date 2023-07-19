@@ -1,106 +1,113 @@
 <!DOCTYPE html>
-<html xmlns:th="www.thymeleaf.org"
-		xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-<meta charset="UTF-8">
-<title>JQuery</title>
-<style>
-input {
-	outline:none;
-}
-.in1 {
-	backgroud-color: white;
-	border: 1px solid black;
-	padding: 4px;
-}
-.in2 {
-	background-color:yellow;
-	border: 1px solid red;
-	padding: 5px;
-}
-</style>
-<script th:src="@{/js/jquery-3.7.0.js}"></script> <!-- jquery 불러오기 -->
-<script>
+<html
+  xmlns:th="www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JQuery</title>
+    <style>
+      input {
+        outline: none;
+      }
+      .in1 {
+        backgroud-color: white;
+        border: 1px solid black;
+        padding: 4px;
+      }
+      .in2 {
+        background-color: yellow;
+        border: 1px solid red;
+        padding: 5px;
+      }
+    </style>
+    <script th:src="@{/js/jquery-3.7.0.js}"></script>
+    <!-- jquery 불러오기 -->
+    <script>
+      $(document).ready(function () {
+        $("#button1") /* .on("mouseenter", buttonClick) */
+          .on("click", buttonClick); // 함수 이름만 선언 연결 가능 여러개 등록가능 연속 동작가능
+        /* $('#button1').click(buttonClick); // 위랑 같음 */
+        $("#button2").on("click", function () {
+          // $('#button1').off('click');
+          $("#button1").off("click", buttonClick);
+        }); // .on();
+        $("#button3").on("click", function () {
+          $("#button1").on("click", buttonClick);
+        }); // .on();
 
-$(document).ready(function() {
-	 $('#button1')/* .on("mouseenter", buttonClick) */.on("click", buttonClick); // 함수 이름만 선언 연결 가능 여러개 등록가능 연속 동작가능
-	/* $('#button1').click(buttonClick); // 위랑 같음 */
-	$('#button2').on('click', function() {
-		// $('#button1').off('click');
-		$('#button1').off('click', buttonClick);
-	}); // .on();
-	$('#button3').on('click', function() {
-		$('#button1').on('click', buttonClick);
-	}); // .on();
-	
-	$('#text1').on('click', function() {
-		$('#button1').trigger('click');
-	});
-	
-	$('img').on('mouseenter', function(){
-		const width = $(this).width();
-		const height = $(this).height();
-		$(this).css('cursor', "pointer").css('width', width*2).css('height', height*2);
-	});
-	$('img').on('mouseleave', function() {
-		const width = $(this).width();
-		const height = $(this).height();
-		$(this).css('width', width/2.0).css('height', height/2.0);
-	});
-	$('img').on('click', function() {
-		const name = $(this).attr('src');
-		$(this).attr('src', '../images/IMG_8846.jpg')
-	});
-	$(".bt").click(function() {
-		alert($(this).attr('key'));
-	});
-	$(".in").focus(function() {
-		$(this).removeClass('in1');
-		$(this).addClass('in2');
-	});
-	$('.in').blur(function() {
-		$(this).removeClass('in2');
-		$(this).addClass('in1');
-	});
-	$('#input1').on('keyup', function() {
-		let text = $(this).val();
-		$('#output1').html(text.length);
-	})
-}); // ready(); 제일 먼저 실행해줌;
+        $("#text1").on("click", function () {
+          $("#button1").trigger("click");
+        });
 
-function buttonClick() {
-	alert("button1 클릭")
-}
+        $("img").on("mouseenter", function () {
+          const width = $(this).width();
+          const height = $(this).height();
+          $(this)
+            .css("cursor", "pointer")
+            .css("width", width * 2)
+            .css("height", height * 2);
+        });
+        $("img").on("mouseleave", function () {
+          const width = $(this).width();
+          const height = $(this).height();
+          $(this)
+            .css("width", width / 2.0)
+            .css("height", height / 2.0);
+        });
+        $("img").on("click", function () {
+          const name = $(this).attr("src");
+          $(this).attr("src", "../images/IMG_8846.jpg");
+        });
+        $(".bt").click(function () {
+          alert($(this).attr("key"));
+        });
+        $(".in").focus(function () {
+          $(this).removeClass("in1");
+          $(this).addClass("in2");
+        });
+        $(".in").blur(function () {
+          $(this).removeClass("in2");
+          $(this).addClass("in1");
+        });
+        $("#input1").on("keyup", function () {
+          let text = $(this).val();
+          $("#output1").html(text.length);
+        });
+      }); // ready(); 제일 먼저 실행해줌;
 
-</script>
-</head>
-<body>
-	<h1>[ 이벤트 ]</h1>
-	<h3>이벤트 처리 연결과 해제</h3>
-	<p><input type="button" value="button1" id="button1" /></p>
-	<p><input type="button" value="button1의 이벤트 해제" id="button2"/></p>
-	<p><input type="button" value="button1에 이벤트 다시 연결" id="button3"/></p>
-	<p id="text1">이벤트 강제 발생</p>
-	
-	<h3>여러 객체의 이벤트 처리1</h3>
-	<p><img th:src="@{/images/IMG_0021.jpg}" alt="" /></p>
-	<p><img th:src="@{/images/IMG_5199.jpg}" alt="" /></p>
-	
-	<h3>여러 객체의 이벤트 처리2</h3>
-	<p><input type="button" class="bt" value="버튼" key="1" /></p>
-	<p><input type="button" class="bt" value="버튼" key="2" /></p>
-	<p><input type="button" class="bt" value="버튼" key="3" /></p>
-	
-	<h3>여러 객체의 이벤트 처리3</h3>
-	<p><input type="text" class="in in1" /></p>
-	<p><input type="text" class="in in1" /></p>
-	<p><input type="text" class="in in1" /></p>
-	
-	<h3>문자열 읽기</h3>
-	<p>
-		<input type="text" id="input1" />
-		<span id="output1"></span>
-	</p>
-	
-</body>
+      function buttonClick() {
+        alert("button1 클릭");
+      }
+    </script>
+  </head>
+  <body>
+    <h1>[ 이벤트 ]</h1>
+    <h3>이벤트 처리 연결과 해제</h3>
+    <p><input type="button" value="button1" id="button1" /></p>
+    <p><input type="button" value="button1의 이벤트 해제" id="button2" /></p>
+    <p>
+      <input type="button" value="button1에 이벤트 다시 연결" id="button3" />
+    </p>
+    <p id="text1">이벤트 강제 발생</p>
+
+    <h3>여러 객체의 이벤트 처리1</h3>
+    <p><img th:src="@{/images/IMG_0021.jpg}" alt="" /></p>
+    <p><img th:src="@{/images/IMG_5199.jpg}" alt="" /></p>
+
+    <h3>여러 객체의 이벤트 처리2</h3>
+    <p><input type="button" class="bt" value="버튼" key="1" /></p>
+    <p><input type="button" class="bt" value="버튼" key="2" /></p>
+    <p><input type="button" class="bt" value="버튼" key="3" /></p>
+
+    <h3>여러 객체의 이벤트 처리3</h3>
+    <p><input type="text" class="in in1" /></p>
+    <p><input type="text" class="in in1" /></p>
+    <p><input type="text" class="in in1" /></p>
+
+    <h3>문자열 읽기</h3>
+    <p>
+      <input type="text" id="input1" />
+      <span id="output1"></span>
+    </p>
+  </body>
 </html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>AJAX</title>
+<script th:src="@{/js/jquery-3.7.0.js}"></script>
+<script>
+	
+	$(document).ready(() => {
+		$("#formBtn1").click(formSubmit1);
+		$("#formBtn2").click(formSubmit2);
+	});
+	
+	const formSubmit1 = () => {
+		// 입력한 이름 나이 전화번호를 읽어온다
+		// 유효성 검사
+		if ($("#name1").val().length < 2){
+			alert("2자 이상 입력하세요");
+			return;
+		}
+		if ($("#age1").val() < 1) {
+			alert("1이상 입력하세요");
+			return;
+		}
+		if ($("#phone1").val().length < 11) {
+			alert("전화번호를 입력해주세요.");
+			return;
+		}
+		// 서버로 전송 -> 돌아와서 "저장완료" 메시지 출력
+		$.ajax({
+			url: 'insert1',
+			type: 'post',
+			data: {name: $("#name1").val(), age: $("#age1").val(), phone: $("#phone1").val()},
+			success: () => {
+				$("#name1").val('');
+				$("#age1").val('');
+				$("#phone1").val('');
+				alert('저장되었습니다');
+			},
+			error: (e) => alert(JSON.stringify(e))
+		});
+	}
+	const formSubmit2 = () => {
+		const name = $("#name2");
+		const age = $("#age2");
+		const phone = $("#phone2");
+		if (name.val().length < 2){
+			alert("2자 이상 입력하세요");
+			return;
+		}
+		if (age.val() < 1) {
+			alert("1이상 입력하세요");
+			return;
+		}
+		if (phone.val().length < 11) {
+			alert("전화번호를 입력해주세요.");
+			return;
+		}
+		const person = {name: name.val(), age: age.val(), phone: phone.val()};
+		$.ajax({
+			url: 'insert2',
+			type: 'post',
+			data: person,
+			success: () => {
+				name.val('');
+				age.val('');
+				phone.val('');
+				alert('저장되었습니다');
+			},
+			error: (e) => alert(JSON.stringify(e))
+		});
+	}
+	
+</script>
+</head>
+<body>
+	<h1>[ 객체 보내기 / 받기 ]</h1>
+	
+	<p>1. 서버로 각각의 parameter를 전달</p>
+	<form action="" id="writeForm1">
+		<table>
+			<tr>
+				<td>이름</td>
+				<td><input type="text" id="name1" /></td>
+			</tr>
+			<tr>
+				<td>나이</td>
+				<td><input type="number" id="age1" /></td>
+			</tr>
+			<tr>
+				<td>전화</td>
+				<td><input type="text" id="phone1" /></td>
+			</tr>
+		</table>
+		<input type="button" value="저장" id="formBtn1" />
+	</form>
+	<hr />
+	
+	<p>2. VO 객체로 전달</p>
+	<form action="" id="writeForm2">
+		<table>
+			<tr>
+				<td>이름</td>
+				<td><input type="text" id="name2" /></td>
+			</tr>
+			<tr>
+				<td>나이</td>
+				<td><input type="number" id="age2" /></td>
+			</tr>
+			<tr>
+				<td>전화</td>
+				<td><input type="text" id="phone2" /></td>
+			</tr>
+		</table>
+		<input type="button" value="저장" id="formBtn2" />
+	</form>
+	
+	
+</body>
+</html>
