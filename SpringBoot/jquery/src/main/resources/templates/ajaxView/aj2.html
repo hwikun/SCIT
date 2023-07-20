@@ -1,120 +1,252 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-<meta charset="UTF-8">
-<title>AJAX</title>
-<script th:src="@{/js/jquery-3.7.0.js}"></script>
-<script>
-	
-	$(document).ready(() => {
-		$("#formBtn1").click(formSubmit1);
-		$("#formBtn2").click(formSubmit2);
-	});
-	
-	const formSubmit1 = () => {
-		// 입력한 이름 나이 전화번호를 읽어온다
-		// 유효성 검사
-		if ($("#name1").val().length < 2){
-			alert("2자 이상 입력하세요");
-			return;
-		}
-		if ($("#age1").val() < 1) {
-			alert("1이상 입력하세요");
-			return;
-		}
-		if ($("#phone1").val().length < 11) {
-			alert("전화번호를 입력해주세요.");
-			return;
-		}
-		// 서버로 전송 -> 돌아와서 "저장완료" 메시지 출력
-		$.ajax({
-			url: 'insert1',
-			type: 'post',
-			data: {name: $("#name1").val(), age: $("#age1").val(), phone: $("#phone1").val()},
-			success: () => {
-				$("#name1").val('');
-				$("#age1").val('');
-				$("#phone1").val('');
-				alert('저장되었습니다');
-			},
-			error: (e) => alert(JSON.stringify(e))
-		});
-	}
-	const formSubmit2 = () => {
-		const name = $("#name2");
-		const age = $("#age2");
-		const phone = $("#phone2");
-		if (name.val().length < 2){
-			alert("2자 이상 입력하세요");
-			return;
-		}
-		if (age.val() < 1) {
-			alert("1이상 입력하세요");
-			return;
-		}
-		if (phone.val().length < 11) {
-			alert("전화번호를 입력해주세요.");
-			return;
-		}
-		const person = {name: name.val(), age: age.val(), phone: phone.val()};
-		$.ajax({
-			url: 'insert2',
-			type: 'post',
-			data: person,
-			success: () => {
-				name.val('');
-				age.val('');
-				phone.val('');
-				alert('저장되었습니다');
-			},
-			error: (e) => alert(JSON.stringify(e))
-		});
-	}
-	
-</script>
-</head>
-<body>
-	<h1>[ 객체 보내기 / 받기 ]</h1>
-	
-	<p>1. 서버로 각각의 parameter를 전달</p>
-	<form action="" id="writeForm1">
-		<table>
-			<tr>
-				<td>이름</td>
-				<td><input type="text" id="name1" /></td>
-			</tr>
-			<tr>
-				<td>나이</td>
-				<td><input type="number" id="age1" /></td>
-			</tr>
-			<tr>
-				<td>전화</td>
-				<td><input type="text" id="phone1" /></td>
-			</tr>
-		</table>
-		<input type="button" value="저장" id="formBtn1" />
-	</form>
-	<hr />
-	
-	<p>2. VO 객체로 전달</p>
-	<form action="" id="writeForm2">
-		<table>
-			<tr>
-				<td>이름</td>
-				<td><input type="text" id="name2" /></td>
-			</tr>
-			<tr>
-				<td>나이</td>
-				<td><input type="number" id="age2" /></td>
-			</tr>
-			<tr>
-				<td>전화</td>
-				<td><input type="text" id="phone2" /></td>
-			</tr>
-		</table>
-		<input type="button" value="저장" id="formBtn2" />
-	</form>
-	
-	
-</body>
+<html
+  xmlns:th="http://thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AJAX</title>
+    <script th:src="@{/js/jquery-3.7.0.js}"></script>
+    <script>
+      $(document).ready(() => {
+        $("#formBtn1").click(formSubmit1);
+        $("#formBtn2").click(formSubmit2);
+        $("#formBtn3").click(formSubmit3);
+        $("#btn1").click(getObj1);
+        $("#btn2").click(getObj2);
+        $("#btn3").click(getObj3);
+        $("#btn4").click(sendArr1);
+        $("#btn5").click(sendArr2);
+      });
+
+      const formSubmit1 = () => {
+        // 입력한 이름 나이 전화번호를 읽어온다
+        // 유효성 검사
+        if ($("#name1").val().length < 2) {
+          alert("2자 이상 입력하세요");
+          return;
+        }
+        if ($("#age1").val() < 1) {
+          alert("1이상 입력하세요");
+          return;
+        }
+        if ($("#phone1").val().length < 11) {
+          alert("전화번호를 입력해주세요.");
+          return;
+        }
+        // 서버로 전송 -> 돌아와서 "저장완료" 메시지 출력
+        $.ajax({
+          url: "insert1",
+          type: "post",
+          data: {
+            name: $("#name1").val(),
+            age: $("#age1").val(),
+            phone: $("#phone1").val(),
+          },
+          success: () => {
+            $("#name1").val("");
+            $("#age1").val("");
+            $("#phone1").val("");
+            alert("저장되었습니다");
+          },
+          error: e => alert(JSON.stringify(e)),
+        });
+      };
+      const formSubmit2 = () => {
+        const name = $("#name2");
+        const age = $("#age2");
+        const phone = $("#phone2");
+        if (name.val().length < 2) {
+          alert("2자 이상 입력하세요");
+          return;
+        }
+        if (age.val() < 1) {
+          alert("1이상 입력하세요");
+          return;
+        }
+        if (phone.val().length < 11) {
+          alert("전화번호를 입력해주세요.");
+          return;
+        }
+        const person = { name: name.val(), age: age.val(), phone: phone.val() };
+        $.ajax({
+          url: "insert2",
+          type: "post",
+          data: person,
+          success: () => {
+            name.val("");
+            age.val("");
+            phone.val("");
+            alert("저장되었습니다");
+          },
+          error: e => alert(JSON.stringify(e)),
+        });
+      };
+      const formSubmit3 = () => {
+        $.ajax({
+          url: "insert3",
+          type: "post",
+          data: $("#writeForm3").serialize(),
+          success: () => {
+            $("#name3").val("");
+            $("#age3").val("");
+            $("#phone3").val("");
+            alert("저장되었습니다");
+          },
+          error: e => alert(JSON.stringify(e)),
+        });
+      };
+      const getObj1 = () => {
+        $.ajax({
+          url: "getObj",
+          type: "get",
+          dataType: "text",
+          success: obj => {
+            $("#output1").html(obj);
+          },
+          error: e => alert(JSON.stringify(e)),
+        });
+      };
+      const getObj2 = () => {
+        $.ajax({
+          url: "getObj",
+          type: "get",
+          dataType: "json",
+          success: obj => {
+            const { name, age, phone } = obj;
+            $("#output2").html(`이름: ${name} 나이: ${age} 전화번호: ${phone}`);
+          },
+          error: e => alert(JSON.stringify(e)),
+        });
+      };
+      const getObj3 = () => {
+        $.ajax({
+          url: "getList",
+          type: "get",
+          dataType: "json",
+          success: list => {
+            $("#output3").html('<table id="table"></table>');
+            list.map(p => {
+              const { name, age, phone } = p;
+              $("#table").append(`
+      <tr>
+      	<td>${name}</td>
+      	<td>${age}</td>
+      	<td>${phone}</td>
+      </tr>
+      `);
+            });
+          },
+          error: e => alert(JSON.stringify(e)),
+        });
+      };
+      const sendArr1 = () => {
+        const arr = ["aaa", "bbb", "ccc"];
+        $.ajax({
+          url: "sendArr1",
+          type: "post",
+          data: arr,
+          // traditional: true,
+          success: () => {
+            alert("저장되었습니다.");
+          },
+          error: e => alert(JSON.stringify(e)),
+        });
+      };
+      const sendArr2 = () => {
+        const arr = [
+          { name: "aaa", age: 11, phone: "010-1111-2222" },
+          { name: "bbb", age: 33, phone: "010-1111-5555" },
+          { name: "ccc", age: 54, phone: "010-1111-6666" },
+        ];
+        $.ajax({
+          url: "sendArr2",
+          type: "post",
+          data: { arr: JSON.stringify(arr) },
+          success: () => {
+            alert("저장되었습니다.");
+          },
+          error: e => alert(JSON.stringify(e)),
+        });
+      };
+    </script>
+  </head>
+  <body>
+    <h1>[ 객체 보내기 / 받기 ]</h1>
+
+    <p>1. 서버로 각각의 parameter를 전달</p>
+    <form action="" id="writeForm1">
+      <table>
+        <tr>
+          <td>이름</td>
+          <td><input type="text" id="name1" /></td>
+        </tr>
+        <tr>
+          <td>나이</td>
+          <td><input type="number" id="age1" /></td>
+        </tr>
+        <tr>
+          <td>전화</td>
+          <td><input type="text" id="phone1" /></td>
+        </tr>
+      </table>
+      <input type="button" value="저장" id="formBtn1" />
+    </form>
+    <hr />
+
+    <p>2. VO 객체로 전달</p>
+    <form action="" id="writeForm2">
+      <table>
+        <tr>
+          <td>이름</td>
+          <td><input type="text" id="name2" /></td>
+        </tr>
+        <tr>
+          <td>나이</td>
+          <td><input type="number" id="age2" /></td>
+        </tr>
+        <tr>
+          <td>전화</td>
+          <td><input type="text" id="phone2" /></td>
+        </tr>
+      </table>
+      <input type="button" value="저장" id="formBtn2" />
+    </form>
+
+    <p>3. VO 객체로 전달(2)</p>
+    <form action="" id="writeForm3">
+      <table>
+        <tr>
+          <td>이름</td>
+          <td><input type="text" id="name3" name="name" /></td>
+        </tr>
+        <tr>
+          <td>나이</td>
+          <td><input type="number" id="age3" name="age" /></td>
+        </tr>
+        <tr>
+          <td>전화</td>
+          <td><input type="text" id="phone3" name="phone" /></td>
+        </tr>
+      </table>
+      <input type="button" value="저장" id="formBtn3" />
+    </form>
+
+    <p>4. 서버에서 객체의 값을 String으로 받기</p>
+    <p><input type="button" id="btn1" value="서버에서 객체받기" /></p>
+    <div id="output1"></div>
+
+    <p>5. 서버에서 객체의 값을 JSON으로 받기</p>
+    <p><input type="button" id="btn2" value="서버에서 객체받기" /></p>
+    <div id="output2"></div>
+
+    <p>6. 서버에서 리스트 받기</p>
+    <p><input type="button" id="btn3" value="서버에서 리스트받기" /></p>
+    <div id="output3"></div>
+
+    <p>7. 서버로 배열 보내기</p>
+    <p><input type="button" value="서버로 배열 보내기" id="btn4" /></p>
+
+    <p>8. 서버로 객체배열 보내기</p>
+    <p><input type="button" value="서버로 객체배열 보내기" id="btn5" /></p>
+  </body>
 </html>
