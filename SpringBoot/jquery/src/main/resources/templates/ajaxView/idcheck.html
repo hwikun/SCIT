@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AJAX</title>
+    <script th:src="@{/js/jquery-3.7.0.js}"></script>
+    <script>
+      $(document).ready(() => {
+        $("#inputId").keyup(checkID);
+        $("#submitButton").click(handleSubmit);
+      });
+      const handleSubmit = () => {
+        $.ajax({
+          url: "submit",
+          type: "post",
+          data: { memberid: $("#inputId").val(), name: $("#inputName").val() },
+          error: e => alert(JSON.stringify(e)),
+          success: () => alert("가입되었습니다!"),
+        });
+      };
+      const checkID = event => {
+        const { value } = event.target;
+        if (value.length < 3) {
+          $("#display").html("3자 이상 입력해주세요").css("color", "red");
+          $("#submitButton").attr("disabled", true);
+          return;
+        }
+        $.ajax({
+          url: "checkid",
+          type: "post",
+          data: { id: value },
+          datatype: "json",
+          error: e => alert(JSON.stringify(e)),
+          success: ok => {
+            if (ok) {
+              $("#submitButton").attr("disabled", false);
+              $("#display").html("사용 가능 합니다!").css("color", "lime");
+            } else {
+              $("#display").html("이미 사용중인 ID 입니다").css("color", "red");
+            }
+          },
+        });
+      };
+    </script>
+  </head>
+  <body>
+    <h1>[ ID 중복 확인 ]</h1>
+    <form id="idcheckForm">
+      <table>
+        <tr>
+          <td><span>ID</span></td>
+          <td><input type="text" id="inputId" name="memberid" /></td>
+          <td><span id="display"></span></td>
+        </tr>
+        <tr>
+          <td><span>이름</span></td>
+          <td><input type="text" id="inputName" name="name" /></td>
+        </tr>
+      </table>
+      <input type="button" value="가입" id="submitButton" disabled="disabled" />
+    </form>
+  </body>
+</html>

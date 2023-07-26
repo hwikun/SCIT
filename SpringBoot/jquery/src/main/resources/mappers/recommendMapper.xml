@@ -1,0 +1,23 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.softsociety.jquery.dao.AjaxDAO">
+
+<select id="getRecommend" parameterType="int" resultType="Recommend">
+select * from web_recommend where boardnum = #{boardnum}
+</select>
+
+<update id="updateCnt" parameterType="int">
+update web_recommend set cnt = cnt + 1 where boardnum = #{boardnum}
+</update>
+
+<select id="checkId" parameterType="String">
+select count(*) from web_member where memberid = #{memberid}
+</select>
+
+<insert id="insertMember" parameterType="Member">
+insert into web_member values (#{memberid}, #{name})
+</insert>
+
+</mapper>

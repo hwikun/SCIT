@@ -2,7 +2,9 @@ package net.softsociety.jquery.controller;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,12 +15,18 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
+import net.softsociety.jquery.domain.Member;
 import net.softsociety.jquery.domain.Person;
+import net.softsociety.jquery.domain.Recommend;
+import net.softsociety.jquery.service.AjaxService;
 
 @Controller
 @Slf4j
 @RequestMapping("aj")
 public class AjaxController {
+
+  @Autowired
+  AjaxService service;
 
   @GetMapping("aj1")
   public String aj1() {
@@ -97,8 +105,9 @@ public class AjaxController {
 
   @ResponseBody
   @PostMapping("sendArr1")
-  public void sendArr1(String []arr) {
-    if(arr == null) log.debug("arr: null");
+  public void sendArr1(String[] arr) {
+    if (arr == null)
+      log.debug("arr: null");
     else {
       for (String s : arr) {
         log.debug("arr: {}", s);
@@ -114,13 +123,52 @@ public class AjaxController {
       return;
     }
     ObjectMapper objectMapper = new ObjectMapper();
-    ArrayList<Person> list = objectMapper.readValue(arr, new TypeReference<ArrayList<Person>>() {});
-    
-    log.debug("object: {}",list);
+    ArrayList<Person> list = objectMapper.readValue(arr, new TypeReference<ArrayList<Person>>() {
+    });
 
-    for(Object obj : list) {
-      log.debug("타입: {}",obj.getClass());
+    log.debug("object: {}", list);
+
+    for (Object obj : list) {
+      log.debug("타입: {}", obj.getClass());
       log.debug("값: {}", obj);
     }
   }
+
+  @GetMapping("recommend")
+  public String recommend(Model model) {
+    Recommend recommend = service.getRecommend(1);
+    model.addAttribute("recommend", recommend);
+    return "ajaxView/recommend";
+  }
+
+  @GetMapping("idcheck")
+  public String idCheck() {
+    return "ajaxView/idcheck";
+  }
+
+  @ResponseBody
+  @GetMapping("getRecommend")
+  public Recommend getRecommend() {
+    return service.getRecommend(1);
+  }
+
+  @ResponseBody
+  @GetMapping("cntup")
+  public Recommend cntup() {
+    service.updateCnt(1);
+    return service.getRecommend(1);
+  }
+
+  @ResponseBody
+  @PostMapping("checkid")
+  public Boolean checkid(String id) {
+    return service.checkId(id);
+  }
+
+  @ResponseBody
+  @PostMapping("submit")
+  public Boolean insertMember(Member member) {
+    return service.insertMember(member);
+  }
+
 }

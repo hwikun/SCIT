@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>comment</title>
+    <script th:src="@{/js/jquery-3.7.0.js}"></script>
+    <script>
+      $(document).ready(() => {
+        init();
+        $("#formButton").click(handleSubmit);
+      });
+      function handleDelete() {
+        const num = $(this).attr("num");
+        $.ajax({
+          url: "deleteComment",
+          type: "post",
+          data: { num },
+          error: e => alert(JSON.stringify(e)),
+          success: () => {
+            alert("삭제되었습니다");
+            init();
+          },
+        });
+      }
+      const init = () => {
+        $.ajax({
+          url: "getComments",
+          type: "get",
+          dataType: "json",
+          error: e => alert(JSON.stringify(e)),
+          success: res => {
+            $("#listDiv").html("<table id='table'></table>");
+            res.map(item => {
+              $("#table").append(
+                `<tr><td>${item.num}</td><td>${item.name}</td><td>${item.text}</td><td><input type="button" value="삭제" class="deleteBtn" num=${item.num} /></td></tr>`,
+              );
+            });
+            $(".deleteBtn").click(handleDelete);
+          },
+        });
+      };
+      const handleSubmit = () => {
+        const name = $("#name").val();
+        const text = $("#comment").val();
+        $.ajax({
+          url: "insert",
+          type: "post",
+          data: { name, text },
+          error: e => alert(JSON.stringify(e)),
+          success: () => {
+            alert("저장되었습니다.");
+            init();
+          },
+        });
+      };
+    </script>
+  </head>
+  <body>
+    <h2>댓글 달기</h2>
+    <!--  댓글 작성 -->
+    <div>
+      <form>
+        <input type="text" id="name" />
+        <input type="text" id="comment" />
+        <input type="button" id="formButton" value="저장" />
+      </form>
+    </div>
+    <!--  목록 출력 영역-->
+    <div id="listDiv"></div>
+  </body>
+</html>

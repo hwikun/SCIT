@@ -1,0 +1,52 @@
+--ajax 예제의 테이블
+
+--추천 기능
+create table web_recommend (
+	boardnum 	number	primary key,
+	cnt			number default 0
+);
+
+insert into web_recommend (boardnum) values (1);
+update web_recommend set cnt = cnt + 1 where boardnum = 1;
+
+--ID 중복검사 기능
+create table web_member (
+	memberid	varchar2(20) primary key,
+	name		varchar2(20) not null
+);
+
+insert into web_member values ('abc', '홍길동');
+select * from web_member where memberid = 'abc';
+select count(*) from web_member where memberid = 'abc';
+
+
+--댓글 기능
+-- Ajax Test용 테이블
+create table web_comment (
+	num		number primary key,
+	name	varchar2(20) not null,
+	text	varchar2(200) not null
+);
+
+create sequence web_comment_seq;
+
+insert into web_comment values (web_comment_seq.nextval, '홍길동', '댓글내용입니다.');
+
+[실습1]
+게시판 글읽기 화면의 일부
+화면에 현재 조회수 출력
+"추천" 버튼을 누르면 ajax로 DB의 조회수를 증가시키고 화면에서도 증가된 숫자로 출력.
+
+[실습2]
+회원가입화면의 일부
+가입 시 원하는 ID를 입력하는 동안 사용 가능여부를 Ajax로 확인하여 화면에 메시지 출력
+키보드 한번 누를 때마다 이벤트 처리
+현재 입력한 아이디가 3글자 미만이면 사용불가
+3글자 이상이면 입력한 내용을 서버로 전송하여
+회원정보 테이블에서 검색
+사용중인 아이디 인지 아닌지 여부를 리턴
+화면에 메시지 출력.
+"가입"버튼(submit타입)은 사용가능한 아이디 인 경우에만 활성화
+그 외에는 비활성화
+$('#submitButton').attr('disabled', false);
+<input type="submit" value="가입" id="submitButton" disabled="disabled">

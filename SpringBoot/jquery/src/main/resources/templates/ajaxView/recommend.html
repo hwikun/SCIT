@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AJAX</title>
+    <script th:src="@{/js/jquery-3.7.0.js}"></script>
+    <script>
+      $(document).ready(() => {
+        getRecommend();
+        $("#boomup").click(thumbUp);
+      });
+      const getRecommend = () => {
+        $.ajax({
+          url: "getRecommend",
+          type: "get",
+          dataType: "json",
+          success: res => {
+            const { cnt } = res;
+            $("#display").html(cnt);
+          },
+          error: e => alert(JSON.stringify(e)),
+        });
+      };
+      const thumbUp = () => {
+        $.ajax({
+          url: "cntup",
+          type: "get",
+          dataType: "json",
+          success: res => {
+            const { cnt } = res;
+            $("#display").html(cnt);
+            alert("추천되었습니다.");
+          },
+          error: e => alert(JSON.stringify(e)),
+        });
+      };
+    </script>
+  </head>
+  <body>
+    <h1>[ 게시글 추천 ]</h1>
+    <button id="boomup">추천</button>
+    <span id="display"></span>
+  </body>
+</html>
